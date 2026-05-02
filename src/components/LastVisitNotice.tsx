@@ -8,7 +8,7 @@ const STORAGE_KEY = "hare-realestate-last-visit-at";
 
 function formatVisitDate() {
   const d = new Date();
-  if (Number.isNaN(d.getTime())) return iso;
+  if (Number.isNaN(d.getTime())) return "不明な日時";
   return new Intl.DateTimeFormat("ja-JP", {
     year: "numeric",
     month: "long",
