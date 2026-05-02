@@ -156,7 +156,7 @@ export default async function PropertyPage({ params }: PageProps) {
           <h1>{titleFor(property)}</h1>
           <figure>
             <Image
-              src={`/images/${property.id}.jpg`}
+              src={`/images/${property.id}.webp`}
               alt={`${titleFor(property)}の外観写真（イメージ）`}
               width={600}
               height={400}
