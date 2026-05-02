@@ -1,66 +1,65 @@
-import Image from "next/image";
+import { LastVisitNotice } from "@/components/LastVisitNotice";
+import { SiteFooter } from "@/components/SiteFooter";
+import { SiteHeader } from "@/components/SiteHeader";
+import { PropertyCatalog } from "@/components/PropertyCatalog";
 import styles from "./page.module.css";
+
+function HeroAside() {
+  return (
+    <aside className={styles.sideCard} aria-label="サービス概要メモ">
+      <p className={styles.sideTitle}>晴レ不動産の強み</p>
+      <ul className={styles.sideList}>
+        <li>駅徒歩分数と実走時間の両方をメモ化してご案内します</li>
+        <li>投資用・自住用のポートフォリオ整理もお任せください</li>
+        <li>提携ローン窓口との同日相談が可能です（エリアにより異なります）</li>
+        <li>外国籍のお客様向けに英語資料の同梱も対応可能です</li>
+      </ul>
+    </aside>
+  );
+}
 
 export default function Home() {
   return (
     <div className={styles.page}>
+      <SiteHeader active="home" />
       <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.tsx file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
+        <section className={styles.hero} aria-labelledby="home-hero-title">
+          <div>
+            <p className={styles.sectionKicker}>Hare Real Estate / Tokyo-Osaka-Kanagawa</p>
+            <h1 id="home-hero-title" className={styles.heroTitle}>
+              晴れた日のように、住まい選びを軽やかに。
+            </h1>
+            <p className={styles.heroLead}>
+              当サイトはNext.js App Routerの学習用デモです。掲載金額・写真・周辺環境は架空の例であり、
+              実際の取引を保証するものではありません。最新情報は必ず現地確認をお願いいたします。
+            </p>
+            <div className={styles.pillRow}>
+              <span className={styles.pill}>売買サポート</span>
+              <span className={styles.pill}>賃貸仲介</span>
+              <span className={styles.pill}>法人契約</span>
+              <span className={styles.pill}>リノベ相談</span>
+            </div>
+          </div>
+          <HeroAside />
+        </section>
+
+        <header className={styles.sectionHead}>
+          <span className={styles.sectionKicker}>Property Library</span>
+          <h2 className={styles.sectionTitle}>掲載物件ライブラリ</h2>
+          <p className={styles.sectionNote}>
+            下のパネルでは、取引区分・都市・部屋数の3軸で件数がリアルタイムに変わります。
+            数字はすべてクライアント側のフィルター結果です。
           </p>
-        </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+          <p className={styles.disclaimer}>
+            図面・専有面積・築年数は登記簿謄本と重要事項説明書をご確認ください（デモ文言）。
+          </p>
+        </header>
+
+        <LastVisitNotice />
+
+        <PropertyCatalog />
       </main>
+      <SiteFooter />
     </div>
   );
 }

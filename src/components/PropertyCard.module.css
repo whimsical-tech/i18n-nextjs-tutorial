@@ -1,0 +1,104 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #e6e2da;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 8px 24px rgba(28, 42, 58, 0.06);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 36px rgba(28, 42, 58, 0.1);
+}
+
+.thumb {
+  aspect-ratio: 16 / 10;
+  background: linear-gradient(135deg, #dfe6ef, #f5efe4);
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  padding: 0.65rem 0.75rem;
+}
+
+.thumbBadges {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.pill {
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.25rem 0.5rem;
+  border-radius: 999px;
+  background: rgba(28, 42, 58, 0.88);
+  color: #fffaf3;
+}
+
+.newBadge {
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  padding: 0.28rem 0.45rem;
+  border-radius: 6px;
+  background: #c62828;
+  color: #fff;
+  line-height: 1;
+}
+
+.body {
+  padding: 1rem 1rem 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.titleRow {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1c2a3a;
+}
+
+.id {
+  font-size: 0.72rem;
+  color: #7a8490;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.65rem;
+  font-size: 0.82rem;
+  color: #4a5562;
+}
+
+.price {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #8a6a1f;
+}
+
+.link {
+  margin-top: 0.35rem;
+  align-self: flex-start;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #1c4a7a;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.link:hover {
+  color: #0f2f55;
+}

@@ -1,0 +1,26 @@
+.banner {
+  border-radius: 12px;
+  padding: 0.85rem 1rem;
+  border: 1px solid #d4e4f4;
+  background: linear-gradient(90deg, #f0f7ff, #fffdf9);
+  color: #1c2a3a;
+  font-size: 0.9rem;
+  line-height: 1.65;
+}
+
+.banner strong {
+  color: #0f4a8a;
+  font-weight: 700;
+}
+
+.muted {
+  display: block;
+  margin-top: 0.35rem;
+  font-size: 0.78rem;
+  color: #5c6570;
+}
+
+.hidden {
+  visibility: hidden;
+  min-height: 3.25rem;
+}

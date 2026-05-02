@@ -1,0 +1,173 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1.75rem 1.25rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+}
+
+.breadcrumb {
+  font-size: 0.82rem;
+  color: #6b7380;
+}
+
+.hero {
+  border-radius: 16px;
+  padding: 1.35rem 1.25rem;
+  background: linear-gradient(120deg, #f7f2ea, #ffffff);
+  border: 1px solid #e6e2da;
+}
+
+.hero h1 {
+  font-size: clamp(1.2rem, 2.4vw, 1.55rem);
+  font-weight: 800;
+  color: #1c2a3a;
+  line-height: 1.35;
+}
+
+.badges {
+  margin-top: 0.65rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.3rem 0.55rem;
+  border-radius: 999px;
+  background: #1c2a3a;
+  color: #fffaf3;
+}
+
+.badgeMuted {
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.3rem 0.55rem;
+  border-radius: 999px;
+  background: #eef2f7;
+  color: #2a3544;
+}
+
+.badgeNew {
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  padding: 0.3rem 0.5rem;
+  border-radius: 6px;
+  background: #c62828;
+  color: #fff;
+}
+
+.priceRow {
+  margin-top: 0.85rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  align-items: baseline;
+}
+
+.price {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #8a6a1f;
+}
+
+.priceNote {
+  font-size: 0.82rem;
+  color: #5c6570;
+}
+
+.section {
+  border: 1px solid #e6e2da;
+  border-radius: 14px;
+  padding: 1.1rem 1.15rem;
+  background: #fff;
+}
+
+.section h2 {
+  font-size: 1.02rem;
+  font-weight: 800;
+  color: #1c2a3a;
+  margin-bottom: 0.55rem;
+}
+
+.section p {
+  font-size: 0.9rem;
+  line-height: 1.75;
+  color: #4a5562;
+}
+
+.list {
+  margin-top: 0.45rem;
+  padding-left: 1.1rem;
+  font-size: 0.9rem;
+  line-height: 1.75;
+  color: #4a5562;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 0.45rem;
+  font-size: 0.88rem;
+}
+
+.table th,
+.table td {
+  border: 1px solid #e6e2da;
+  padding: 0.45rem 0.55rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+.table th {
+  width: 32%;
+  background: #faf7f2;
+  color: #3d4754;
+  font-weight: 600;
+}
+
+.ctaRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.cta {
+  border: none;
+  border-radius: 999px;
+  padding: 0.55rem 1rem;
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  background: #1c2a3a;
+  color: #fffaf3;
+}
+
+.ctaSecondary {
+  border: 1px solid #c9a227;
+  border-radius: 999px;
+  padding: 0.55rem 1rem;
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  background: #fffdf9;
+  color: #5c4510;
+}
+
+.note {
+  font-size: 0.78rem;
+  color: #6b7380;
+  line-height: 1.55;
+}
