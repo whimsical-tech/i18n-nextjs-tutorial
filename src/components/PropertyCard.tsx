@@ -43,6 +43,7 @@ export function PropertyCard({
         <div className={styles.thumbContainer}>
           <Image
             src={`/images/${property.id}.webp`}
+            priority={true}
             alt=""
             fill
             sizes="(max-width: 768px) 100vw, 33vw"

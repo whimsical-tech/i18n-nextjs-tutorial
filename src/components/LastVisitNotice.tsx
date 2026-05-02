@@ -6,8 +6,8 @@ import styles from "./LastVisitNotice.module.css";
 
 const STORAGE_KEY = "hare-realestate-last-visit-at";
 
-function formatVisitDate(iso: string) {
-  const d = new Date(iso);
+function formatVisitDate() {
+  const d = new Date();
   if (Number.isNaN(d.getTime())) return iso;
   return new Intl.DateTimeFormat("ja-JP", {
     year: "numeric",
@@ -17,57 +17,50 @@ function formatVisitDate(iso: string) {
   }).format(d);
 }
 
-type VisitState =
-  | { kind: "idle" }
-  | { kind: "first" }
-  | { kind: "return"; previousVisitLabel: string };
+type VisitState = "loading" | "first" | "return";
 
 export function LastVisitNotice() {
-  const [visit, setVisit] = useState<VisitState>({ kind: "idle" });
+  const [visit, setVisit] = useState<VisitState>("loading");
 
   useEffect(() => {
+    // This runs ONLY on client
     const previous = localStorage.getItem(STORAGE_KEY);
-    const nowIso = new Date().toISOString();
-    localStorage.setItem(STORAGE_KEY, nowIso);
+    localStorage.setItem(STORAGE_KEY, new Date().toISOString());
 
-    if (previous) {
-      setVisit({
-        kind: "return",
-        previousVisitLabel: formatVisitDate(previous),
-      });
-    } else {
-      setVisit({ kind: "first" });
-    }
+    const newState = previous ? "return" : "first";
+
+    setVisit(newState);
   }, []);
-
-  if (visit.kind === "idle") {
-    return (
-      <div className={`${styles.banner} ${styles.hidden}`} aria-hidden>
-        &nbsp;
-      </div>
-    );
-  }
 
   return (
     <aside className={styles.banner} role="status" aria-live="polite">
-      {visit.kind === "return" ? (
-        <p>
-          前回のご訪問は <strong>{visit.previousVisitLabel}</strong>{" "}
-          でした。その後、新着物件が{" "}
-          <strong>{NEW_LISTING_COUNT} 件</strong>
-          加わっています。一覧では <strong>NEW</strong>{" "}
-          の付いた物件を先頭に並べています。
-        </p>
+      {visit === "loading" ? (
+        <div className={styles.skeleton}>
+          <div className={styles.skeletonLine} />
+          <div className={styles.skeletonLine} />
+          <div className={styles.skeletonMuted} />
+        </div>
       ) : (
-        <p>
-          現在、新着物件が <strong>{NEW_LISTING_COUNT} 件</strong>{" "}
-          あります。次回以降は、前回アクセス日を基準に同じ内容をお知らせします。一覧では{" "}
-          <strong>NEW</strong> の付いた物件を先頭に表示しています。
-        </p>
+        <div className={styles.content}>
+          {visit === "return" ? (
+            <p>
+              前回のご訪問は <strong>{formatVisitDate()}</strong>{" "}
+              でした。その後、新着物件が <strong>{NEW_LISTING_COUNT} 件</strong>
+              加わっています。一覧では <strong>NEW</strong>{" "}
+              の付いた物件を先頭に並べています。
+            </p>
+          ) : (
+            <p>
+              現在、新着物件が <strong>{NEW_LISTING_COUNT} 件</strong>{" "}
+              あります。次回以降は、前回アクセス日を基準に同じ内容をお知らせします。一覧では{" "}
+              <strong>NEW</strong> の付いた物件を先頭に表示しています。
+            </p>
+          )}
+          <span className={styles.muted}>
+            ※日付はこのブラウザに保存した前回アクセス時刻です（デモ用のローカル表示）。
+          </span>
+        </div>
       )}
-      <span className={styles.muted}>
-        ※日付はこのブラウザに保存した前回アクセス時刻です（デモ用のローカル表示）。
-      </span>
     </aside>
   );
 }

@@ -1,24 +1,73 @@
 .banner {
-  border-radius: 12px;
-  padding: 0.85rem 1rem;
-  border: 1px solid #d4e4f4;
-  background: linear-gradient(90deg, #f0f7ff, #fffdf9);
-  color: #1c2a3a;
-  font-size: 0.9rem;
-  line-height: 1.65;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background: #f8fafc;
   margin-top: auto;
+  min-height: 80px;
+}
+
+.skeleton {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.skeletonLine {
+  height: 1rem;
+  background: linear-gradient(90deg, #e2e8f0 25%, #cbd5e1 50%, #e2e8f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 0.25rem;
+}
+
+.skeletonLine:first-child {
+  width: 80%;
+}
+
+.skeletonLine:nth-child(2) {
+  width: 100%;
+}
+
+.skeletonMuted {
+  height: 0.75rem;
+  width: 60%;
+  background: #e2e8f0;
+  border-radius: 0.25rem;
+  margin-top: 0.5rem;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Content State */
+.content {
+  opacity: 0;
+  animation: fadeIn 0.3s ease forwards;
+  animation-delay: 0.1s;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+.muted {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.78rem;
+  color: #6b7380;
 }
 
 .banner strong {
   color: #0f4a8a;
   font-weight: 700;
-}
-
-.muted {
-  display: block;
-  margin-top: 0.35rem;
-  font-size: 0.78rem;
-  color: #5c6570;
 }
 
 .hidden {
