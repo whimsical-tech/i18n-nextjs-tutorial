@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import type { PropertyRecord } from "@/lib/properties";
 import styles from "./PropertyCard.module.css";
 
@@ -34,32 +35,43 @@ export function PropertyCard({
 
   return (
     <article className={styles.card}>
-      <div className={styles.thumb}>
-        <div className={styles.thumbBadges}>
-          <span className={styles.pill}>{copy.thumbCaption}</span>
-          {property.isNew ? (
-            <span className={styles.newBadge} aria-label="新着物件">
-              NEW
-            </span>
-          ) : null}
+      <Link
+        href={`/properties/${property.id}`}
+        className={styles.cardLink}
+        aria-label={`${title}の詳細を見る`}
+      >
+        <div className={styles.thumbContainer}>
+          <Image
+            src={`/images/${property.id}.jpg`}
+            alt=""
+            fill
+            sizes="(max-width: 768px) 100vw, 33vw"
+            className={styles.thumbImage}
+          />
+
+          <div className={styles.thumbBadges}>
+            <span className={styles.pill}>{copy.thumbCaption}</span>
+            {property.isNew && (
+              <span className={styles.newBadge} aria-label="新着物件">
+                NEW
+              </span>
+            )}
+          </div>
         </div>
-      </div>
-      <div className={styles.body}>
-        <div className={styles.titleRow}>
-          <h3 className={styles.title}>{title}</h3>
-          <span className={styles.id}>ID: {property.id}</span>
+        <div className={styles.body}>
+          <div className={styles.titleRow}>
+            <h3 className={styles.title}>{title}</h3>
+            <span className={styles.id}>ID: {property.id}</span>
+          </div>
+          <div className={styles.meta}>
+            <span>{copy.cityLabel}</span>
+            <span>{copy.roomsLabel}</span>
+            <span>{copy.areaLabel}</span>
+            <span>{copy.yearLabel}</span>
+          </div>
+          <p className={styles.price}>{priceText}</p>
         </div>
-        <div className={styles.meta}>
-          <span>{copy.cityLabel}</span>
-          <span>{copy.roomsLabel}</span>
-          <span>{copy.areaLabel}</span>
-          <span>{copy.yearLabel}</span>
-        </div>
-        <p className={styles.price}>{priceText}</p>
-        <Link className={styles.link} href={`/properties/${property.id}`}>
-          {copy.detailCta}
-        </Link>
-      </div>
+      </Link>
     </article>
   );
 }

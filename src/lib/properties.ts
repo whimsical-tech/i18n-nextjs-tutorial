@@ -6,12 +6,13 @@ export type PropertyRecord = {
   id: string;
   listingKind: ListingKind;
   cityKey: CityKey;
-  rooms: 1 | 2 | 3 | 4;
+  rooms: number;
   areaSqm: number;
   builtYear: number;
+  photoCredit?: string;
+  photoCreditUrl?: string;
   monthlyRentYen?: number;
   salePriceYen?: number;
-  /** 新着として一覧先頭に並べ、NEWバッジを表示する */
   isNew?: boolean;
 };
 
@@ -24,6 +25,9 @@ export const PROPERTIES: PropertyRecord[] = [
     areaSqm: 58,
     builtYear: 2019,
     monthlyRentYen: 248000,
+    photoCredit: "Naomi Hébert",
+    photoCreditUrl:
+      "https://unsplash.com/@naomish?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText",
   },
   {
     id: "meguro-river-501",
@@ -33,6 +37,9 @@ export const PROPERTIES: PropertyRecord[] = [
     areaSqm: 72,
     builtYear: 2017,
     salePriceYen: 118000000,
+    photoCredit: "Quilia",
+    photoCreditUrl:
+      "https://unsplash.com/@heyquilia?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText",
   },
   {
     id: "yokohama-minato-902",
@@ -42,6 +49,9 @@ export const PROPERTIES: PropertyRecord[] = [
     areaSqm: 36,
     builtYear: 2021,
     monthlyRentYen: 112000,
+    photoCredit: "Patrick Perkins",
+    photoCreditUrl:
+      "https://unsplash.com/@patrickperkins?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText",
   },
   {
     id: "kawasaki-station-305",
@@ -51,6 +61,9 @@ export const PROPERTIES: PropertyRecord[] = [
     areaSqm: 64,
     builtYear: 2015,
     salePriceYen: 59800000,
+    photoCredit: "Pixasquare",
+    photoCreditUrl:
+      "https://unsplash.com/@pixasquare?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText",
   },
   {
     id: "umeda-sky-2101",
@@ -60,6 +73,9 @@ export const PROPERTIES: PropertyRecord[] = [
     areaSqm: 55,
     builtYear: 2020,
     monthlyRentYen: 198000,
+    photoCredit: "Kara Eads",
+    photoCreditUrl:
+      "https://unsplash.com/@karaeads?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText",
   },
   {
     id: "namba-loft-808",
@@ -69,6 +85,9 @@ export const PROPERTIES: PropertyRecord[] = [
     areaSqm: 98,
     builtYear: 2014,
     salePriceYen: 142000000,
+    photoCredit: "Francesca Tosolini",
+    photoCreditUrl:
+      "https://unsplash.com/@fromitaly?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText",
   },
   {
     id: "shibuya-cross-402",
@@ -78,6 +97,9 @@ export const PROPERTIES: PropertyRecord[] = [
     areaSqm: 81,
     builtYear: 2018,
     monthlyRentYen: 385000,
+    photoCredit: "Douglas Sheppard",
+    photoCreditUrl:
+      "https://unsplash.com/@candjstudios?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText",
   },
   {
     id: "shinagawa-bay-1502",
@@ -87,6 +109,9 @@ export const PROPERTIES: PropertyRecord[] = [
     areaSqm: 61,
     builtYear: 2016,
     salePriceYen: 92800000,
+    photoCredit: "Spacejoy",
+    photoCreditUrl:
+      "https://unsplash.com/@spacejoy?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText",
   },
   {
     id: "sakai-garden-101",
@@ -96,15 +121,22 @@ export const PROPERTIES: PropertyRecord[] = [
     areaSqm: 32,
     builtYear: 2022,
     monthlyRentYen: 88000,
+    photoCredit: "Kam Idris",
+    photoCreditUrl:
+      "https://unsplash.com/@ka_idris?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText",
   },
   {
     id: "yokohama-hills-2205",
     listingKind: "sale",
     cityKey: "kanagawa",
     rooms: 3,
-    areaSqm: 76,
+    areaSqm: 176,
     builtYear: 2013,
     salePriceYen: 87500000,
+    isNew: true,
+    photoCredit: "Frames For Your Heart",
+    photoCreditUrl:
+      "https://unsplash.com/@framesforyourheart?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText",
   },
   {
     id: "ikebukuro-sunrise-0801",
@@ -114,6 +146,9 @@ export const PROPERTIES: PropertyRecord[] = [
     areaSqm: 52,
     builtYear: 2024,
     monthlyRentYen: 224000,
+    photoCredit: "Lotus Design N Print",
+    photoCreditUrl:
+      "https://unsplash.com/@lotusdnp?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText",
     isNew: true,
   },
   {
@@ -124,27 +159,35 @@ export const PROPERTIES: PropertyRecord[] = [
     areaSqm: 68,
     builtYear: 2023,
     salePriceYen: 102000000,
-    isNew: true,
+    photoCredit: "Outsite Co",
+    photoCreditUrl:
+      "https://unsplash.com/@outsite?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText",
   },
   {
     id: "fujisawa-coast-0302",
     listingKind: "rent",
     cityKey: "kanagawa",
-    rooms: 1,
-    areaSqm: 38,
+    rooms: 4,
+    areaSqm: 138,
     builtYear: 2025,
-    monthlyRentYen: 98000,
+    monthlyRentYen: 898000,
     isNew: true,
+    photoCredit: "Ярослав Алексеенко",
+    photoCreditUrl:
+      "https://unsplash.com/photos/white-and-brown-concrete-building-under-blue-sky-during-daytime-_TPTXZd9mOo?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText",
   },
   {
     id: "taito-skytree-0909",
     listingKind: "rent",
     cityKey: "tokyo",
-    rooms: 3,
+    rooms: 2,
     areaSqm: 74,
     builtYear: 2020,
     monthlyRentYen: 268000,
     isNew: true,
+    photoCredit: "Spacejoy",
+    photoCreditUrl:
+      "https://unsplash.com/@spacejoy?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText",
   },
 ];
 
@@ -156,7 +199,9 @@ const propertyOrder = new Map(
 );
 
 /** 新着を先頭に、それ以外はデータ定義順 */
-export function sortPropertiesForDisplay(list: PropertyRecord[]): PropertyRecord[] {
+export function sortPropertiesForDisplay(
+  list: PropertyRecord[],
+): PropertyRecord[] {
   return [...list].sort((a, b) => {
     const aNew = a.isNew ? 1 : 0;
     const bNew = b.isNew ? 1 : 0;

@@ -30,10 +30,6 @@ export function SiteHeader({ active }: { active: NavKey }) {
           >
             会社概要
           </Link>
-          <span className={styles.navLink} aria-hidden>
-            お問い合わせ
-            <span className={styles.badge}>準備中</span>
-          </span>
         </nav>
       </div>
     </header>

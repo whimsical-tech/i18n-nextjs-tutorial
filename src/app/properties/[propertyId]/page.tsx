@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
@@ -26,7 +27,7 @@ function titleFor(p: PropertyRecord) {
     "shibuya-cross-402": "渋谷クロスゲート 4階メゾネット",
     "shinagawa-bay-1502": "品川ベイサイドタワー 15階",
     "sakai-garden-101": "堺ガーデンヒルズ 1階庭付き",
-    "yokohama-hills-2205": "横浜ヒルズレジデンス 22階",
+    "yokohama-hills-2205": "横浜ヒルズレジデンス",
     "ikebukuro-sunrise-0801": "池袋サンライズコート 8階南東向き",
     "nakanoshima-river-1201": "中之島リバーフロント 12階",
     "fujisawa-coast-0302": "藤沢コーストレジデンス 3階",
@@ -51,8 +52,9 @@ function NarrativeBlock({ property }: { property: PropertyRecord }) {
       <h2 id="story-heading">物件ストーリー（読み物）</h2>
       <p>
         このページは <strong>{titleFor(property)}</strong> のデモ紹介です。
-        専有面積は <strong>{area}㎡</strong>、間取りは <strong>{rooms}LDK相当</strong>、
-        築年は <strong>{year}年</strong> としてサンプル登録しています。
+        専有面積は <strong>{area}㎡</strong>、間取りは{" "}
+        <strong>{rooms}LDK相当</strong>、 築年は <strong>{year}年</strong>{" "}
+        としてサンプル登録しています。
       </p>
       <p>
         朝の採光や風の通り道は図面だけでは伝わりにくいため、内見時にはカーテンの開閉状態も含めて確認することをおすすめします（一般論）。
@@ -108,29 +110,6 @@ function SpecTable({ property }: { property: PropertyRecord }) {
   );
 }
 
-function ContactTeaser({ propertyId }: { propertyId: string }) {
-  return (
-    <section className={styles.section} aria-label="お問い合わせ案内">
-      <h2>内見・資料請求（デモ）</h2>
-      <p>
-        実際のフォームは未接続です。物件ID <strong>{propertyId}</strong> をメモして、
-        担当者へ口頭でお伝えいただく想定の文言を置いています。
-      </p>
-      <div className={styles.ctaRow}>
-        <button className={styles.cta} type="button" disabled>
-          内見予約を申し込む（デモ）
-        </button>
-        <button className={styles.ctaSecondary} type="button" disabled>
-          PDFパンフを請求（デモ）
-        </button>
-      </div>
-      <p className={styles.note}>
-        ボタンは意図的に無効化しています。本番ではAPIルートや外部CRMと連携してください。
-      </p>
-    </section>
-  );
-}
-
 export async function generateStaticParams() {
   return PROPERTIES.map((p) => ({ propertyId: p.id }));
 }
@@ -175,12 +154,32 @@ export default async function PropertyPage({ params }: PageProps) {
 
         <header className={styles.hero}>
           <h1>{titleFor(property)}</h1>
+          <figure>
+            <Image
+              src={`/images/${property.id}.jpg`}
+              alt={`${titleFor(property)}の外観写真（イメージ）`}
+              width={600}
+              height={400}
+            />
+            <figcaption>
+              <a
+                href={property.photoCreditUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Photo by {property.photoCredit} (Unsplash)
+              </a>
+            </figcaption>
+          </figure>
+
           <div className={styles.badges}>
             <span className={styles.badge}>
               {property.listingKind === "sale" ? "売買物件" : "賃貸物件"}
             </span>
             <span className={styles.badgeMuted}>物件コード：{property.id}</span>
-            <span className={styles.badgeMuted}>エリア：{cityJp(property.cityKey)}</span>
+            <span className={styles.badgeMuted}>
+              エリア：{cityJp(property.cityKey)}
+            </span>
             {property.isNew ? (
               <span className={styles.badgeNew} aria-label="新着物件">
                 NEW
@@ -201,8 +200,12 @@ export default async function PropertyPage({ params }: PageProps) {
             駅前の喧騒から一歩入ると静けさが広がる、そんなコントラストを楽しめる住環境を目指したプランニングです（デモ文）。
           </p>
           <ul className={styles.list}>
-            <li>収納計画：可動棚を基本に、季節家電も床に置かずに済む動線を意識</li>
-            <li>キッチン：対面型を想定し、家族の顔が見える配置を提案しています</li>
+            <li>
+              収納計画：可動棚を基本に、季節家電も床に置かずに済む動線を意識
+            </li>
+            <li>
+              キッチン：対面型を想定し、家族の顔が見える配置を提案しています
+            </li>
             <li>浴室：換気乾燥機付きの最新仕様を想定したダミー文言です</li>
           </ul>
         </section>
@@ -230,8 +233,6 @@ export default async function PropertyPage({ params }: PageProps) {
             近隣の建替え・再開発計画がある場合は、買主様・借主様ご自身でもヒアリングをお願いします（テンプレ文言）。
           </p>
         </section>
-
-        <ContactTeaser propertyId={property.id} />
       </main>
       <SiteFooter />
     </div>

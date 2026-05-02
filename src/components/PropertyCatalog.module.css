@@ -46,8 +46,15 @@
   color: #7a8490;
 }
 
+.filterContainer {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.25rem;
+}
+
 .filters {
   border: 1px solid #e6e2da;
+  flex-grow: 1;
   border-radius: 14px;
   padding: 1rem 1.1rem;
   background: #fff;
@@ -95,7 +102,10 @@
   padding: 0.35rem 0.65rem;
   border-radius: 999px;
   cursor: pointer;
-  transition: background 0.12s ease, border-color 0.12s ease, color 0.12s ease;
+  transition:
+    background 0.12s ease,
+    border-color 0.12s ease,
+    color 0.12s ease;
 }
 
 .chip:hover {
@@ -130,25 +140,6 @@
 .resetNote {
   font-size: 0.75rem;
   color: #7a8490;
-}
-
-.resultBanner {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 0.35rem 0.75rem;
-  padding: 0.65rem 0.15rem;
-}
-
-.resultMain {
-  font-size: 0.95rem;
-  font-weight: 700;
-  color: #1c2a3a;
-}
-
-.resultSub {
-  font-size: 0.82rem;
-  color: #5c6570;
 }
 
 .grid {
