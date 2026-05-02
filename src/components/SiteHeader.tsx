@@ -10,7 +10,7 @@ export function SiteHeader({ active }: { active: NavKey }) {
         <Link href="/" className={styles.brand}>
           <span className={styles.brandName}>晴レ不動産</span>
           <span className={styles.tagline}>
-            首都圏の売買・賃貸をワンストップでサポートします
+            日本各地の売買・賃貸をワンストップでサポートします
           </span>
         </Link>
         <nav className={styles.nav} aria-label="主要ナビゲーション">

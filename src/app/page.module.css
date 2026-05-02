@@ -11,84 +11,35 @@
   padding: 1.75rem 1.25rem 2.5rem;
   display: flex;
   flex-direction: column;
-  gap: 1.75rem;
-}
-
-.hero {
-  border-radius: 18px;
-  padding: 1.75rem 1.5rem;
-  background: radial-gradient(
-      1200px 400px at 10% 0%,
-      rgba(255, 214, 153, 0.35),
-      transparent 55%
-    ),
-    linear-gradient(135deg, #1c2a3a, #2a4a6f);
-  color: #fffaf3;
-  display: grid;
-  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
-  gap: 1.25rem;
-  align-items: start;
-}
-
-.heroTitle {
-  font-size: clamp(1.35rem, 2.6vw, 1.85rem);
-  font-weight: 800;
-  line-height: 1.35;
-  letter-spacing: 0.02em;
-}
-
-.heroLead {
-  margin-top: 0.65rem;
-  font-size: 0.95rem;
-  line-height: 1.75;
-  color: #e8edf5;
-}
-
-.pillRow {
-  margin-top: 1rem;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-}
-
-.pill {
-  font-size: 0.72rem;
-  font-weight: 700;
-  padding: 0.35rem 0.55rem;
-  border-radius: 999px;
-  background: rgba(255, 250, 243, 0.12);
-  border: 1px solid rgba(255, 250, 243, 0.22);
-}
-
-.sideCard {
-  border-radius: 14px;
-  padding: 1rem 1rem 1.1rem;
-  background: rgba(255, 250, 243, 0.08);
-  border: 1px solid rgba(255, 250, 243, 0.18);
-}
-
-.sideTitle {
-  font-size: 0.82rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  color: #ffe6b3;
-  margin-bottom: 0.45rem;
-}
-
-.sideList {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-  font-size: 0.85rem;
-  line-height: 1.55;
-  color: #f2f5fb;
+  gap: 1.1rem;
 }
 
 .sectionHead {
+  display: block;
+  min-height: 100%;
+}
+
+.sectionHeadTop {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: 1rem 1.5rem;
+  min-height: 100%;
+}
+
+.sectionPropertyLibrary {
+  min-width: min(100%, 16rem);
+  max-width: min(100%, 42rem);
   display: flex;
   flex-direction: column;
-  gap: 0.35rem;
+  gap: 1rem;
+}
+
+.sectionHeadHero {
+  flex: 0 1 auto;
+  width: min(100%, min(38vw, 22rem));
+  max-width: min(38vw, 22rem);
 }
 
 .sectionKicker {
@@ -105,12 +56,14 @@
 }
 
 .sectionNote {
+  margin: 0;
   font-size: 0.88rem;
   color: #5c6570;
-  line-height: 1.65;
+  line-height: 1.55;
 }
 
 .disclaimer {
+  margin: 0;
   font-size: 0.78rem;
   color: #6b7380;
   border-left: 3px solid #c9a227;
@@ -118,8 +71,9 @@
   line-height: 1.55;
 }
 
-@media (max-width: 880px) {
-  .hero {
-    grid-template-columns: 1fr;
+@media (max-width: 720px) {
+  .sectionHeadHero {
+    max-width: none;
+    width: 100%;
   }
 }

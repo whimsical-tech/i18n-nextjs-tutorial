@@ -156,194 +156,198 @@ export function PropertyCatalog() {
 
   return (
     <div className={styles.wrap}>
-      <div className={styles.filterContainer}>
-        <section className={styles.filters} aria-label="物件検索フィルター">
-          <h2 className={styles.filtersTitle}>条件で絞り込む</h2>
-          <p className={styles.filtersLead}>
-            ボタンを押すたびに件数が更新されます。複数条件はANDで適用されます。
-          </p>
+      <div className={styles.catalogRow}>
+        <aside className={styles.stickyAside} aria-label="検索条件・集計">
+          <div className={styles.filterStack}>
+            <section className={styles.filters} aria-label="物件検索フィルター">
+              <h2 className={styles.filtersTitle}>条件で絞り込む</h2>
+              <div className={styles.group}>
+                <p className={styles.groupLabel}>取引の種類</p>
+                <div className={styles.row} role="group" aria-label="取引区分">
+                  <button
+                    type="button"
+                    className={`${styles.chip} ${
+                      listingFilter === "all" ? styles.chipActive : ""
+                    }`}
+                    onClick={() => setListingFilter("all")}
+                  >
+                    すべて
+                  </button>
+                  <button
+                    type="button"
+                    className={`${styles.chip} ${
+                      listingFilter === "sale" ? styles.chipActive : ""
+                    }`}
+                    onClick={() => setListingFilter("sale")}
+                  >
+                    売買のみ
+                  </button>
+                  <button
+                    type="button"
+                    className={`${styles.chip} ${
+                      listingFilter === "rent" ? styles.chipActive : ""
+                    }`}
+                    onClick={() => setListingFilter("rent")}
+                  >
+                    賃貸のみ
+                  </button>
+                </div>
+              </div>
 
-          <div className={styles.group}>
-            <p className={styles.groupLabel}>取引の種類</p>
-            <div className={styles.row} role="group" aria-label="取引区分">
-              <button
-                type="button"
-                className={`${styles.chip} ${
-                  listingFilter === "all" ? styles.chipActive : ""
-                }`}
-                onClick={() => setListingFilter("all")}
-              >
-                すべて
-              </button>
-              <button
-                type="button"
-                className={`${styles.chip} ${
-                  listingFilter === "sale" ? styles.chipActive : ""
-                }`}
-                onClick={() => setListingFilter("sale")}
-              >
-                売買のみ
-              </button>
-              <button
-                type="button"
-                className={`${styles.chip} ${
-                  listingFilter === "rent" ? styles.chipActive : ""
-                }`}
-                onClick={() => setListingFilter("rent")}
-              >
-                賃貸のみ
-              </button>
-            </div>
+              <div className={styles.group}>
+                <p className={styles.groupLabel}>都市（都道府県）</p>
+                <div
+                  className={styles.row}
+                  role="group"
+                  aria-label="都市フィルター"
+                >
+                  <button
+                    type="button"
+                    className={`${styles.chip} ${
+                      cityFilter === "all" ? styles.chipActive : ""
+                    }`}
+                    onClick={() => setCityFilter("all")}
+                  >
+                    指定なし
+                  </button>
+                  <button
+                    type="button"
+                    className={`${styles.chip} ${
+                      cityFilter === "tokyo" ? styles.chipActive : ""
+                    }`}
+                    onClick={() => setCityFilter("tokyo")}
+                  >
+                    東京都
+                  </button>
+                  <button
+                    type="button"
+                    className={`${styles.chip} ${
+                      cityFilter === "osaka" ? styles.chipActive : ""
+                    }`}
+                    onClick={() => setCityFilter("osaka")}
+                  >
+                    大阪府
+                  </button>
+                  <button
+                    type="button"
+                    className={`${styles.chip} ${
+                      cityFilter === "kanagawa" ? styles.chipActive : ""
+                    }`}
+                    onClick={() => setCityFilter("kanagawa")}
+                  >
+                    神奈川県
+                  </button>
+                </div>
+              </div>
+
+              <div className={styles.group}>
+                <p className={styles.groupLabel}>部屋数の目安（LDK）</p>
+                <div
+                  className={styles.row}
+                  role="group"
+                  aria-label="間取りフィルター"
+                >
+                  <button
+                    type="button"
+                    className={`${styles.chip} ${
+                      roomsFilter === "all" ? styles.chipActive : ""
+                    }`}
+                    onClick={() => setRoomsFilter("all")}
+                  >
+                    こだわらない
+                  </button>
+                  <button
+                    type="button"
+                    className={`${styles.chip} ${
+                      roomsFilter === 1 ? styles.chipActive : ""
+                    }`}
+                    onClick={() => setRoomsFilter(1)}
+                  >
+                    1LDK
+                  </button>
+                  <button
+                    type="button"
+                    className={`${styles.chip} ${
+                      roomsFilter === 2 ? styles.chipActive : ""
+                    }`}
+                    onClick={() => setRoomsFilter(2)}
+                  >
+                    2LDK
+                  </button>
+                  <button
+                    type="button"
+                    className={`${styles.chip} ${
+                      roomsFilter === 3 ? styles.chipActive : ""
+                    }`}
+                    onClick={() => setRoomsFilter(3)}
+                  >
+                    3LDK
+                  </button>
+                  <button
+                    type="button"
+                    className={`${styles.chip} ${
+                      roomsFilter === 4 ? styles.chipActive : ""
+                    }`}
+                    onClick={() => setRoomsFilter(4)}
+                  >
+                    4LDK
+                  </button>
+                </div>
+              </div>
+
+              {matchedCount !== metrics.totalListed && (
+                <div className={styles.resetRow}>
+                  <button
+                    type="button"
+                    className={styles.reset}
+                    onClick={() => {
+                      setListingFilter("all");
+                      setCityFilter("all");
+                      setRoomsFilter("all");
+                    }}
+                  >
+                    条件をすべてクリア
+                  </button>
+                  <span className={styles.resetNote}>
+                    クリア後は掲載ライブラリの全件が再表示されます
+                  </span>
+                </div>
+              )}
+            </section>
+
+            <StatsRibbon
+              matchedCount={matchedCount}
+              listingFilter={listingFilter}
+              cityFilter={cityFilter}
+              roomsFilter={roomsFilter}
+            />
           </div>
+        </aside>
 
-          <div className={styles.group}>
-            <p className={styles.groupLabel}>都市（都道府県）</p>
-            <div
-              className={styles.row}
-              role="group"
-              aria-label="都市フィルター"
-            >
-              <button
-                type="button"
-                className={`${styles.chip} ${
-                  cityFilter === "all" ? styles.chipActive : ""
-                }`}
-                onClick={() => setCityFilter("all")}
-              >
-                指定なし
-              </button>
-              <button
-                type="button"
-                className={`${styles.chip} ${
-                  cityFilter === "tokyo" ? styles.chipActive : ""
-                }`}
-                onClick={() => setCityFilter("tokyo")}
-              >
-                東京都
-              </button>
-              <button
-                type="button"
-                className={`${styles.chip} ${
-                  cityFilter === "osaka" ? styles.chipActive : ""
-                }`}
-                onClick={() => setCityFilter("osaka")}
-              >
-                大阪府
-              </button>
-              <button
-                type="button"
-                className={`${styles.chip} ${
-                  cityFilter === "kanagawa" ? styles.chipActive : ""
-                }`}
-                onClick={() => setCityFilter("kanagawa")}
-              >
-                神奈川県
-              </button>
+        <div className={styles.mainColumn}>
+          {matchedCount === 0 ? (
+            <div className={styles.empty}>
+              <p className={styles.emptyTitle}>
+                該当する物件が見つかりませんでした
+              </p>
+              <p>
+                条件を緩めるか、「条件をすべてクリア」からやり直してください。
+              </p>
             </div>
-          </div>
-
-          <div className={styles.group}>
-            <p className={styles.groupLabel}>部屋数の目安（LDK）</p>
-            <div
-              className={styles.row}
-              role="group"
-              aria-label="間取りフィルター"
-            >
-              <button
-                type="button"
-                className={`${styles.chip} ${
-                  roomsFilter === "all" ? styles.chipActive : ""
-                }`}
-                onClick={() => setRoomsFilter("all")}
-              >
-                こだわらない
-              </button>
-              <button
-                type="button"
-                className={`${styles.chip} ${
-                  roomsFilter === 1 ? styles.chipActive : ""
-                }`}
-                onClick={() => setRoomsFilter(1)}
-              >
-                1LDK
-              </button>
-              <button
-                type="button"
-                className={`${styles.chip} ${
-                  roomsFilter === 2 ? styles.chipActive : ""
-                }`}
-                onClick={() => setRoomsFilter(2)}
-              >
-                2LDK
-              </button>
-              <button
-                type="button"
-                className={`${styles.chip} ${
-                  roomsFilter === 3 ? styles.chipActive : ""
-                }`}
-                onClick={() => setRoomsFilter(3)}
-              >
-                3LDK
-              </button>
-              <button
-                type="button"
-                className={`${styles.chip} ${
-                  roomsFilter === 4 ? styles.chipActive : ""
-                }`}
-                onClick={() => setRoomsFilter(4)}
-              >
-                4LDK
-              </button>
-            </div>
-          </div>
-
-          {matchedCount !== metrics.totalListed && (
-            <div className={styles.resetRow}>
-              <button
-                type="button"
-                className={styles.reset}
-                onClick={() => {
-                  setListingFilter("all");
-                  setCityFilter("all");
-                  setRoomsFilter("all");
-                }}
-              >
-                条件をすべてクリア
-              </button>
-              <span className={styles.resetNote}>
-                クリア後は掲載ライブラリの全件が再表示されます
-              </span>
+          ) : (
+            <div className={styles.grid}>
+              {metrics.filtered.map((p) => (
+                <PropertyCard
+                  key={p.id}
+                  property={p}
+                  title={<PropertyTitle id={p.id} />}
+                  copy={propertyCopy(p)}
+                />
+              ))}
             </div>
           )}
-        </section>
-
-        <StatsRibbon
-          matchedCount={matchedCount}
-          listingFilter={listingFilter}
-          cityFilter={cityFilter}
-          roomsFilter={roomsFilter}
-        />
+        </div>
       </div>
-
-      {matchedCount === 0 ? (
-        <div className={styles.empty}>
-          <p className={styles.emptyTitle}>
-            該当する物件が見つかりませんでした
-          </p>
-          <p>条件を緩めるか、「条件をすべてクリア」からやり直してください。</p>
-        </div>
-      ) : (
-        <div className={styles.grid}>
-          {metrics.filtered.map((p) => (
-            <PropertyCard
-              key={p.id}
-              property={p}
-              title={<PropertyTitle id={p.id} />}
-              copy={propertyCopy(p)}
-            />
-          ))}
-        </div>
-      )}
     </div>
   );
 }
