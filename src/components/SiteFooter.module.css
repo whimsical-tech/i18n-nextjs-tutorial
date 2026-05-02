@@ -44,6 +44,17 @@
   color: #9aa6b5;
 }
 
+.credit {
+  border-bottom: 1px solid orange;
+  padding-bottom: 3px;
+  padding-right: 1px;
+}
+
+.credit:hover {
+  color: orange;
+  transition: color 0.15s ease;
+}
+
 @media (max-width: 720px) {
   .inner {
     grid-template-columns: 1fr;

@@ -27,7 +27,17 @@ export function SiteFooter() {
         </div>
       </div>
       <div className={styles.bottom}>
-        © {new Date().getFullYear()} 晴レ不動産株式会社 — 掲載情報は予告なく変更される場合があります
+        © {new Date().getFullYear()}{" "}
+        このプロジェクトは、付随するブログ投稿のために{" "}
+        <a
+          href="https://whimsical-tech.github.io/en"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.credit}
+        >
+          ☀️ Whimsical Tech
+        </a>{" "}
+        によって構築されました。
       </div>
     </footer>
   );
