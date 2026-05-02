@@ -171,3 +171,18 @@
   color: #6b7380;
   line-height: 1.55;
 }
+
+.figure {
+  width: 600px;
+  height: 400px;
+  overflow: hidden;
+}
+
+.figcaption {
+  position: relative;
+  top: -3rem;
+  z-index: 15;
+  left: 0;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.5);
+}

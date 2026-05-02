@@ -154,20 +154,20 @@ export default async function PropertyPage({ params }: PageProps) {
 
         <header className={styles.hero}>
           <h1>{titleFor(property)}</h1>
-          <figure>
+          <figure className={styles.figure}>
             <Image
               src={`/images/${property.id}.webp`}
               alt={`${titleFor(property)}の外観写真（イメージ）`}
               width={600}
               height={400}
             />
-            <figcaption>
+            <figcaption className={styles.figcaption}>
               <a
                 href={property.photoCreditUrl}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Photo by {property.photoCredit} (Unsplash)
+                写真提供: {property.photoCredit} (Unsplash)
               </a>
             </figcaption>
           </figure>
