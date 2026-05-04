@@ -4,11 +4,16 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { PropertyCatalog } from "@/components/PropertyCatalog";
 import styles from "./page.module.css";
+import { Locale } from "@/i18n-config";
 
-export default function Home() {
+export default function Home({
+  params,
+}: {
+  params: Promise<{ lang: Locale }>;
+}) {
   return (
     <div className={styles.page}>
-      <SiteHeader active="home" />
+      <SiteHeader params={params} active="home" />
       <main className={styles.main}>
         <header className={styles.sectionHead}>
           <div className={styles.sectionHeadTop}>

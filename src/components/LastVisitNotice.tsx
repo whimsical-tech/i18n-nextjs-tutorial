@@ -4,32 +4,29 @@ import { useEffect, useState } from "react";
 import { NEW_LISTING_COUNT } from "@/lib/properties";
 import styles from "./LastVisitNotice.module.css";
 
-const STORAGE_KEY = "hare-realestate-last-visit-at";
+import { Trans, useTranslation } from "react-i18next";
 
-function formatVisitDate() {
-  const d = new Date();
-  if (Number.isNaN(d.getTime())) return "不明な日時";
-  return new Intl.DateTimeFormat("ja-JP", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-    weekday: "short",
-  }).format(d);
-}
-
-type VisitState = "loading" | "first" | "return";
+type VisitState = "loading" | "visited";
 
 export function LastVisitNotice() {
   const [visit, setVisit] = useState<VisitState>("loading");
 
+  const { t, i18n } = useTranslation();
+  const locale = i18n.language;
+
+  function formatVisitDate(locale: string) {
+    const d = new Date();
+    if (Number.isNaN(d.getTime())) return t("unknownDate");
+    return new Intl.DateTimeFormat(locale, {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      weekday: "short",
+    }).format(d);
+  }
+
   useEffect(() => {
-    // This runs ONLY on client
-    const previous = localStorage.getItem(STORAGE_KEY);
-    localStorage.setItem(STORAGE_KEY, new Date().toISOString());
-
-    const newState = previous ? "return" : "first";
-
-    setVisit(newState);
+    setVisit("visited");
   }, []);
 
   return (
@@ -42,23 +39,19 @@ export function LastVisitNotice() {
         </div>
       ) : (
         <div className={styles.content}>
-          {visit === "return" ? (
-            <p>
-              前回のご訪問は <strong>{formatVisitDate()}</strong>{" "}
-              でした。その後、新着物件が <strong>{NEW_LISTING_COUNT} 件</strong>
-              加わっています。一覧では <strong>NEW</strong>{" "}
-              の付いた物件を先頭に並べています。
-            </p>
-          ) : (
-            <p>
-              現在、新着物件が <strong>{NEW_LISTING_COUNT} 件</strong>{" "}
-              あります。次回以降は、前回アクセス日を基準に同じ内容をお知らせします。一覧では{" "}
-              <strong>NEW</strong> の付いた物件を先頭に表示しています。
-            </p>
-          )}
-          <span className={styles.muted}>
-            ※日付はこのブラウザに保存した前回アクセス時刻です（デモ用のローカル表示）。
-          </span>
+          <Trans
+            i18nKey="lastVisit.mainText"
+            values={{
+              date: formatVisitDate(locale),
+              count: NEW_LISTING_COUNT,
+            }}
+          >
+            <strong>date</strong>
+            <strong>count</strong>
+            <strong>NEW</strong>
+          </Trans>
+
+          <span className={styles.muted}>{t("lastVisit.dateWarning")}</span>
         </div>
       )}
     </aside>

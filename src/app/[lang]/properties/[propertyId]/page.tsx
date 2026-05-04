@@ -144,7 +144,7 @@ export default async function PropertyPage({ params }: PageProps) {
 
   return (
     <div className={styles.page}>
-      <SiteHeader active="home" />
+      <SiteHeader active="home" params={params} />
       <main className={styles.main}>
         <p className={styles.breadcrumb}>
           <Link href="/">ホーム</Link>
@@ -156,7 +156,7 @@ export default async function PropertyPage({ params }: PageProps) {
           <h1>{titleFor(property)}</h1>
           <figure className={styles.figure}>
             <Image
-              src={`/images/${property.id}.webp`}
+              src="/images/yokohama-hills-2205.webp"
               alt={`${titleFor(property)}の外観写真（イメージ）`}
               width={600}
               height={400}

@@ -1,17 +1,27 @@
 import Link from "next/link";
 import styles from "./SiteHeader.module.css";
+import LanguageSwitcher from "./LanguageSwitcher/language-switcher";
+import { getLocale } from "@/locales";
+import { Locale } from "@/i18n-config";
 
 type NavKey = "home" | "about";
 
-export function SiteHeader({ active }: { active: NavKey }) {
+export async function SiteHeader({
+  active,
+  params,
+}: {
+  active: NavKey;
+  params: Promise<{ lang: Locale }>;
+}) {
+  const { lang } = await params;
+
+  const t = await getLocale(lang);
   return (
     <header className={styles.header}>
       <div className={styles.inner}>
         <Link href="/" className={styles.brand}>
           <span className={styles.brandName}>晴レ不動産</span>
-          <span className={styles.tagline}>
-            日本各地の売買・賃貸をワンストップでサポートします
-          </span>
+          <span className={styles.tagline}>{t["slogan"]}</span>
         </Link>
         <nav className={styles.nav} aria-label="主要ナビゲーション">
           <Link
@@ -30,6 +40,7 @@ export function SiteHeader({ active }: { active: NavKey }) {
           >
             会社概要
           </Link>
+          <LanguageSwitcher />
         </nav>
       </div>
     </header>
