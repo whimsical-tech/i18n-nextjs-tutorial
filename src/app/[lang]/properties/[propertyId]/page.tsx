@@ -7,9 +7,10 @@ import { SiteHeader } from "@/components/SiteHeader";
 import type { PropertyRecord } from "@/lib/properties";
 import { PROPERTIES, getPropertyById } from "@/lib/properties";
 import styles from "./propertyDetail.module.css";
+import { Locale } from "@/i18n-config";
 
 type PageProps = {
-  params: Promise<{ propertyId: string }>;
+  params: Promise<{ propertyId: string; lang: Locale }>;
 };
 
 function formatYen(n: number) {
@@ -129,7 +130,7 @@ export async function generateMetadata({
 }
 
 export default async function PropertyPage({ params }: PageProps) {
-  const { propertyId } = await params;
+  const { propertyId, lang } = await params;
   const property = getPropertyById(propertyId);
   if (!property) {
     notFound();
@@ -147,7 +148,7 @@ export default async function PropertyPage({ params }: PageProps) {
       <SiteHeader active="home" params={params} />
       <main className={styles.main}>
         <p className={styles.breadcrumb}>
-          <Link href="/">ホーム</Link>
+          <Link href={`/${lang}`}>ホーム</Link>
           {" ／ "}
           <span>物件詳細</span>
         </p>

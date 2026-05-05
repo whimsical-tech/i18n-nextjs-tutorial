@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import type { PropertyRecord } from "@/lib/properties";
 import styles from "./PropertyCard.module.css";
+import { useTranslation } from "react-i18next";
 
 function formatYen(n: number) {
   return new Intl.NumberFormat("ja-JP").format(n);
@@ -33,10 +34,13 @@ export function PropertyCard({
         ? `月額 ¥${formatYen(property.monthlyRentYen)}`
         : "価格はお問い合わせください";
 
+  const { i18n } = useTranslation();
+  const currentLocale = i18n.language;
+
   return (
     <article className={styles.card}>
       <Link
-        href={`/properties/${property.id}`}
+        href={`/${currentLocale}/properties/${property.id}`}
         className={styles.cardLink}
         aria-label={`${title}の詳細を見る`}
       >

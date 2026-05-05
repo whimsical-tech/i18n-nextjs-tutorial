@@ -3,6 +3,7 @@
 import { useRouter, usePathname } from "next/navigation";
 import { useTransition } from "react";
 import { Locale } from "@/i18n-config";
+import { useTranslation } from "react-i18next";
 
 const locales: Record<Locale, { name: string; flag: string }> = {
   en: { name: "English", flag: "🇬🇧" },
@@ -12,22 +13,19 @@ const locales: Record<Locale, { name: string; flag: string }> = {
 export default function LanguageSwitcher() {
   const router = useRouter();
   const pathname = usePathname();
+  const { i18n } = useTranslation();
   const [isPending, startTransition] = useTransition();
 
-  const currentLocale: Locale = pathname.startsWith("/ja") ? "ja" : "en";
+  const currentLocale = i18n.language;
 
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const newLocale = event.target.value as Locale;
 
-    startTransition(() => {
-      const segments = pathname.split("/").filter(Boolean);
+    startTransition(async () => {
+      await i18n.changeLanguage(newLocale);
 
-      if (currentLocale === newLocale) return;
-      if (segments[0] === currentLocale) segments[0] = newLocale;
-
-      const newPath = `${segments.join("/")}`;
-
-      router.replace(newPath);
+      const newPath = pathname.replace(`/${currentLocale}`, `/${newLocale}`);
+      router.push(newPath);
     });
   };
 

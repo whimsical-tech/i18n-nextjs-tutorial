@@ -19,13 +19,13 @@ export async function SiteHeader({
   return (
     <header className={styles.header}>
       <div className={styles.inner}>
-        <Link href="/" className={styles.brand}>
+        <Link href={`/${lang}/`} className={styles.brand}>
           <span className={styles.brandName}>晴レ不動産</span>
           <span className={styles.tagline}>{t["slogan"]}</span>
         </Link>
         <nav className={styles.nav} aria-label="主要ナビゲーション">
           <Link
-            href="/"
+            href={`/${lang}/`}
             className={`${styles.navLink} ${
               active === "home" ? styles.navLinkActive : ""
             }`}
@@ -33,7 +33,7 @@ export async function SiteHeader({
             ホーム
           </Link>
           <Link
-            href="/about"
+            href={`/${lang}/about`}
             className={`${styles.navLink} ${
               active === "about" ? styles.navLinkActive : ""
             }`}
