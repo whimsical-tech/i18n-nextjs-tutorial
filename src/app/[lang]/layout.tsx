@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Noto_Sans_JP } from "next/font/google";
+import { Locale } from "@/i18n-config";
 import "./globals.css";
+import { I18nProvider } from "@/components/I18nProvider";
 
 const notoSansJp = Noto_Sans_JP({
   subsets: ["latin"],
@@ -15,20 +17,23 @@ export const metadata: Metadata = {
     "東京都・大阪府・神奈川県を中心に、売買および賃貸の優良物件情報をご案内するデモサイトです。",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
+  params,
 }: Readonly<{
   children: React.ReactNode;
+  params: Promise<{ lang: Locale }>;
 }>) {
+  const { lang } = await params;
   return (
-    <html lang="ja" className={notoSansJp.variable}>
+    <html lang={lang} className={notoSansJp.variable}>
       <body
         style={{
           fontFamily:
             "var(--font-noto-sans-jp), 'Hiragino Sans', 'Yu Gothic UI', Meiryo, sans-serif",
         }}
       >
-        {children}
+        <I18nProvider lang={lang}>{children}</I18nProvider>
       </body>
     </html>
   );

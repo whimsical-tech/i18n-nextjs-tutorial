@@ -1,0 +1,8 @@
+{
+  "slogan": "One-stop support for buying, selling, and renting throughout Japan",
+  "lastVisit": {
+    "dateWarning": " The displayed date is always today's date (demo purposes only)",
+    "mainText": "Your last visit was <strong>{{date}}</strong>. Since then, <strong>{{count}} new listings</strong> have been added. In the list, listings with <strong>NEW</strong> are displayed at the top."
+  },
+  "unknownDate": "unknown date"
+}
