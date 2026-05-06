@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { hasLocale, i18n, Locale } from "./i18n-config";
+import { i18n, Locale } from "./i18n-config";
 
 const { defaultLocale, locales } = i18n;
 
@@ -12,7 +12,9 @@ function getLocale(request: NextRequest) {
     return code.substring(0, 2).toLowerCase();
   });
 
-  const matched = preferredLocales.find((lang) => hasLocale(lang as Locale));
+  const matched = preferredLocales.find((lang) =>
+    locales.includes(lang as Locale),
+  );
   return matched ?? defaultLocale;
 }
 

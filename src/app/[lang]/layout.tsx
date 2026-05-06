@@ -17,6 +17,10 @@ export const metadata: Metadata = {
     "東京都・大阪府・神奈川県を中心に、売買および賃貸の優良物件情報をご案内するデモサイトです。",
 };
 
+export async function generateStaticParams() {
+  return [{ lang: "en" }, { lang: "ja" }];
+}
+
 export default async function RootLayout({
   children,
   params,
