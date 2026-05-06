@@ -5,4 +5,6 @@ export const i18n = {
 
 export type Locale = (typeof i18n)["locales"][number];
 
-export const hasLocale = (locale: Locale) => locale in i18n.locales;
+export const hasLocale = (locale: Locale) => {
+  return i18n.locales.includes(locale);
+};
