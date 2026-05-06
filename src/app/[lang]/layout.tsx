@@ -11,22 +11,22 @@ const notoSansJp = Noto_Sans_JP({
   display: "swap",
 });
 
+export async function generateStaticParams() {
+  return [{ lang: "en" }, { lang: "ja" }];
+}
+
 export const metadata: Metadata = {
   title: "晴レ不動産 | 首都圏の売買・賃貸物件",
   description:
     "東京都・大阪府・神奈川県を中心に、売買および賃貸の優良物件情報をご案内するデモサイトです。",
 };
 
-export async function generateStaticParams() {
-  return [{ lang: "en" }, { lang: "ja" }];
-}
-
 export default async function RootLayout({
   children,
   params,
 }: Readonly<{
   children: React.ReactNode;
-  params: Promise<{ lang: Locale }>;
+  params: Promise<{ lang: string }>;
 }>) {
   const { lang } = await params;
   return (
