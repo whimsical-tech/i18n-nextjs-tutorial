@@ -1,7 +1,7 @@
 import Link from "next/link";
 import styles from "./SiteHeader.module.css";
 import LanguageSwitcher from "./LanguageSwitcher/language-switcher";
-import { getLocale } from "@/locales";
+import { getTranslation } from "@/locales";
 import { Locale } from "@/i18n-config";
 
 type NavKey = "home" | "about";
@@ -15,7 +15,7 @@ export async function SiteHeader({
 }) {
   const { lang } = await params;
 
-  const t = await getLocale(lang);
+  const t = await getTranslation(lang);
   return (
     <header className={styles.header}>
       <div className={styles.inner}>

@@ -5,5 +5,5 @@ const locales = {
   ja: () => import("../locales/ja.json").then((module) => module.default),
 };
 
-export const getLocale = async (locale: Locale) =>
+export const getTranslation = async (locale: Locale) =>
   locales[locale]?.() ?? locales.ja();

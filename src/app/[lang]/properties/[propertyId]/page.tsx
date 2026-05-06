@@ -161,6 +161,7 @@ export default async function PropertyPage({ params }: PageProps) {
               alt={`${titleFor(property)}の外観写真（イメージ）`}
               width={600}
               height={400}
+              loading="eager"
             />
             <figcaption className={styles.figcaption}>
               <a
