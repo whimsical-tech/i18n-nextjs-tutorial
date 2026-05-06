@@ -2,6 +2,7 @@
 
 import { ReactNode, useEffect } from "react";
 import { I18nextProvider } from "react-i18next";
+import { Locale } from "@/i18n-config";
 import i18next from "i18next";
 
 export function I18nProvider({
@@ -9,7 +10,7 @@ export function I18nProvider({
   lang,
 }: {
   children: ReactNode;
-  lang: string;
+  lang: Locale;
 }) {
   useEffect(() => {
     if (!i18next.isInitialized || i18next.language !== lang) {
