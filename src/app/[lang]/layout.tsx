@@ -29,6 +29,7 @@ export default async function RootLayout({
   params: Promise<{ lang: string }>;
 }>) {
   const { lang } = await params;
+  const currentLang = lang as Locale;
   return (
     <html lang={lang} className={notoSansJp.variable}>
       <body
@@ -37,7 +38,7 @@ export default async function RootLayout({
             "var(--font-noto-sans-jp), 'Hiragino Sans', 'Yu Gothic UI', Meiryo, sans-serif",
         }}
       >
-        <I18nProvider lang={lang}>{children}</I18nProvider>
+        <I18nProvider lang={currentLang}>{children}</I18nProvider>
       </body>
     </html>
   );

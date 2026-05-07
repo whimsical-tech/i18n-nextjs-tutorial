@@ -1,20 +1,16 @@
 import type { Metadata } from "next";
+import { Locale } from "@/i18n-config";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import styles from "./about.module.css";
 
 export const metadata: Metadata = {
   title: "会社概要 | 晴レ不動産",
-  description: "晴レ不動産株式会社のミッション、沿革、数字の目安をご紹介します（プレースホルダ）。",
+  description:
+    "晴レ不動産株式会社のミッション、沿革、数字の目安をご紹介します（プレースホルダ）。",
 };
 
-function ValueCard({
-  title,
-  body,
-}: {
-  title: string;
-  body: string;
-}) {
+function ValueCard({ title, body }: { title: string; body: string }) {
   return (
     <div className={styles.card}>
       <h3>{title}</h3>
@@ -23,10 +19,14 @@ function ValueCard({
   );
 }
 
-export default function AboutPage() {
+export default function AboutPage({
+  params,
+}: {
+  params: Promise<{ lang: Locale }>;
+}) {
   return (
     <div className={styles.page}>
-      <SiteHeader active="about" />
+      <SiteHeader params={params} active="about" />
       <main className={styles.main}>
         <div>
           <p className={styles.kicker}>About Hare Real Estate</p>
@@ -53,7 +53,9 @@ export default function AboutPage() {
             <li>設立：2010年4月1日（デモ値）</li>
             <li>資本金：1億円（デモ値）</li>
             <li>従業員数：約180名（グループ全体・デモ値）</li>
-            <li>事業内容：売買仲介、賃貸仲介、賃貸管理、不動産コンサルティング</li>
+            <li>
+              事業内容：売買仲介、賃貸仲介、賃貸管理、不動産コンサルティング
+            </li>
           </ul>
         </section>
 
@@ -82,7 +84,9 @@ export default function AboutPage() {
             <li>2013年：売買部門を新設、中古マンション再販に本格参入</li>
             <li>2016年：大阪支店を開設、関西圏のネットワーク拡大</li>
             <li>2019年：法人向けリロケーション窓口を立ち上げ</li>
-            <li>2022年：顧客向けポータルのベータ版を公開（本サイトとは無関係）</li>
+            <li>
+              2022年：顧客向けポータルのベータ版を公開（本サイトとは無関係）
+            </li>
             <li>2026年：デモ用Next.jsアプリの公開（本ページ）</li>
           </ul>
         </section>
