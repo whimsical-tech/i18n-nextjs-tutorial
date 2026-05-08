@@ -31,7 +31,7 @@ if (!i18next.isInitialized) {
 export default function LanguageSwitcher() {
   const router = useRouter();
   const pathname = usePathname();
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [isPending, startTransition] = useTransition();
 
   const currentLocale = i18n.language;
@@ -62,7 +62,7 @@ export default function LanguageSwitcher() {
           </option>
         ))}
       </select>
-      {isPending && <span>Switching...</span>}
+      {isPending && <span>{t("languageSwitcher.switching")}</span>}
     </div>
   );
 }
