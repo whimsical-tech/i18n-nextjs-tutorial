@@ -4,5 +4,30 @@
     "mainText": "Your last visit was <1>{{date}}</1>. Since then, <3>{{count}} new listings</3> have been added. In the list, listings with <5>NEW</5> are displayed at the top."
   },
   "slogan": "One-stop support for buying, selling, and renting throughout Japan",
+  "breadcrumb": {
+    "home": "Home",
+    "propertyDetails": "Property Details"
+  },
+  "propertyId": {
+    "area": "area",
+    "propertyNotFound": "No properties found",
+    "areaDescription": "Area listing page (demonstration for learning)",
+    "propertyCode": "Property code",
+    "saleProperties": "Properties for sale",
+    "rentalProperties": "Rental properties",
+    "priceNotice": "The displayed price is a sample price. Consumption tax, common area maintenance fees, parking fees, etc. must be confirmed separately.",
+    "catchphrase": "Catchphrase (fictional)",
+    "storagePlan": "Storage plan: Based on adjustable shelves, with a focus on creating a flow that avoids placing seasonal appliances on the floor.",
+    "kitchen": "Kitchen: We propose a layout that allows family members to see each other, assuming an open-plan design.",
+    "bathroom": "Bathroom: This is dummy text assuming a modern bathroom with a ventilation and drying system.",
+    "surroundings": "Notes on surrounding environment (placeholder)",
+    "schoolInfo": "School district information is not included. If necessary, please refer to the publicly available information from the Board of Education and add a note.",
+    "photoNotice": "The photos shown are for illustrative purposes only. Furniture and furnishings are not included in the sales price. For rental properties, please refer to the separate document for estimated costs of restoring the property to its original condition.",
+    "redevelopment": "If there are any rebuilding or redevelopment plans in the surrounding area, please conduct interviews with potential buyers or tenants yourself (template wording).",
+    "precautions": "Precautions (common)",
+    "conveniences": "This section contains standard phrases such as \"walking time to the convenience store,\" \"walking time to the supermarket,\" \"walking time to the park,\" etc. In practice, please compare the measurements from the mapping software with the results of on-site verification.",
+    "demoText": "This plan aims to create a living environment where you can enjoy the contrast between the hustle and bustle of the area in front of the station and the tranquility that unfolds just a step away (demo text)."
+  },
+  "photoCredit": "Photo credit",
   "unknownDate": "Unknown date and time"
 }

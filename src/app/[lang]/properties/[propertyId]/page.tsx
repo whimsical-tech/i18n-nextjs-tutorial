@@ -8,6 +8,7 @@ import type { PropertyRecord } from "@/lib/properties";
 import { PROPERTIES, getPropertyById } from "@/lib/properties";
 import styles from "./propertyDetail.module.css";
 import { Locale } from "@/i18n-config";
+import { getTranslation } from "@/locales";
 
 type PageProps = {
   params: Promise<{ propertyId: string; lang: Locale }>;
@@ -118,14 +119,18 @@ export async function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
-  const { propertyId } = await params;
+  const { propertyId, lang } = await params;
+
+  const dictionary = await getTranslation(lang);
+  const t = dictionary.propertyId;
+
   const property = getPropertyById(propertyId);
   if (!property) {
-    return { title: "物件が見つかりません | 晴レ不動産" };
+    return { title: `${t["propertyNotFound"]} | 晴レ不動産` };
   }
   return {
     title: `${titleFor(property)} | 晴レ不動産`,
-    description: `${cityJp(property.cityKey)}エリアの掲載物件ページ（学習用デモ）。`,
+    description: `${cityJp(property.cityKey)}${t["areaDescription"]}`,
   };
 }
 
@@ -135,6 +140,9 @@ export default async function PropertyPage({ params }: PageProps) {
   if (!property) {
     notFound();
   }
+
+  const dictionary = await getTranslation(lang);
+  const t = dictionary.propertyId;
 
   const priceMain =
     property.listingKind === "sale" && property.salePriceYen
@@ -148,9 +156,9 @@ export default async function PropertyPage({ params }: PageProps) {
       <SiteHeader active="home" params={params} />
       <main className={styles.main}>
         <p className={styles.breadcrumb}>
-          <Link href={`/${lang}`}>ホーム</Link>
+          <Link href={`/${lang}`}>{dictionary["breadcrumb"].home}</Link>
           {" ／ "}
-          <span>物件詳細</span>
+          <span>{dictionary["breadcrumb"].propertyDetails}</span>
         </p>
 
         <header className={styles.hero}>
@@ -169,18 +177,24 @@ export default async function PropertyPage({ params }: PageProps) {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                写真提供: {property.photoCredit} (Unsplash)
+                {dictionary["photoCredit"]} {property.photoCredit} (Unsplash)
               </a>
             </figcaption>
           </figure>
 
           <div className={styles.badges}>
             <span className={styles.badge}>
-              {property.listingKind === "sale" ? "売買物件" : "賃貸物件"}
+              {property.listingKind === "sale"
+                ? t["saleProperties"]
+                : t["rentalProperties"]}
             </span>
-            <span className={styles.badgeMuted}>物件コード：{property.id}</span>
             <span className={styles.badgeMuted}>
-              エリア：{cityJp(property.cityKey)}
+              {t["propertyCode"]}
+              {property.id}
+            </span>
+            <span className={styles.badgeMuted}>
+              {t["area"]}
+              {cityJp(property.cityKey)}
             </span>
             {property.isNew ? (
               <span className={styles.badgeNew} aria-label="新着物件">
@@ -190,25 +204,17 @@ export default async function PropertyPage({ params }: PageProps) {
           </div>
           <div className={styles.priceRow}>
             <p className={styles.price}>{priceMain}</p>
-            <p className={styles.priceNote}>
-              表示価格はサンプルです。消費税・共益費・駐車場などは別途要確認です。
-            </p>
+            <p className={styles.priceNote}>{t["priceNotice"]}</p>
           </div>
         </header>
 
         <section className={styles.section} aria-labelledby="catch-heading">
-          <h2 id="catch-heading">キャッチコピー（架空）</h2>
-          <p>
-            駅前の喧騒から一歩入ると静けさが広がる、そんなコントラストを楽しめる住環境を目指したプランニングです（デモ文）。
-          </p>
+          <h2 id="catch-heading">{t["catchphrase"]}</h2>
+          <p>{t["demoText"]}</p>
           <ul className={styles.list}>
-            <li>
-              収納計画：可動棚を基本に、季節家電も床に置かずに済む動線を意識
-            </li>
-            <li>
-              キッチン：対面型を想定し、家族の顔が見える配置を提案しています
-            </li>
-            <li>浴室：換気乾燥機付きの最新仕様を想定したダミー文言です</li>
+            <li>{t["storagePlan"]}</li>
+            <li>{t["kitchen"]}</li>
+            <li>{t["bathroom"]}</li>
           </ul>
         </section>
 
@@ -216,24 +222,15 @@ export default async function PropertyPage({ params }: PageProps) {
         <SpecTable property={property} />
 
         <section className={styles.section} aria-labelledby="location-heading">
-          <h2 id="location-heading">周辺環境メモ（プレースホルダ）</h2>
-          <p>
-            コンビニまで徒歩分数、スーパーまで徒歩分数、公園まで徒歩分数…のような定型的な文章をここに置きます。
-            実務では地図ソフトの測定値と現地確認結果を突合してください。
-          </p>
-          <p>
-            学区表記は入れていません。必要な場合は教育委員会の公開情報を参照し、注意書きを添えてください。
-          </p>
+          <h2 id="location-heading">{t["surroundings"]}</h2>
+          <p>{t["conveniences"]}</p>
+          <p>{t["schoolInfo"]}</p>
         </section>
 
         <section className={styles.section} aria-labelledby="legal-heading">
-          <h2 id="legal-heading">注意事項（共通）</h2>
-          <p>
-            掲載写真はイメージです。家具・調度品は販売価格に含まれません。賃貸の場合は原状回復費用の目安も別紙でご確認ください。
-          </p>
-          <p>
-            近隣の建替え・再開発計画がある場合は、買主様・借主様ご自身でもヒアリングをお願いします（テンプレ文言）。
-          </p>
+          <h2 id="legal-heading">{t["precautions"]}</h2>
+          <p>{t["photoNotice"]}</p>
+          <p>{t["redevelopment"]}</p>
         </section>
       </main>
       <SiteFooter />
