@@ -8,6 +8,10 @@
     "home": "Home",
     "propertyDetails": "Property Details"
   },
+  "complianceBroker": "Real Estate Broker: Tokyo Metropolitan Governor (1) No. 000000",
+  "complianceGuarantee": "Guarantee Association: National Association of Real Estate Transaction Guarantee Associations",
+  "complianceHandling": "Complaint handling: Please contact our customer service department.",
+  "developedBy": " This project was developed by ☀️ Whimsical Tech for the accompanying blog post.",
   "propertyId": {
     "area": "area",
     "propertyNotFound": "No properties found",
@@ -28,6 +32,13 @@
     "conveniences": "This section contains standard phrases such as \"walking time to the convenience store,\" \"walking time to the supermarket,\" \"walking time to the park,\" etc. In practice, please compare the measurements from the mapping software with the results of on-site verification.",
     "demoText": "This plan aims to create a living environment where you can enjoy the contrast between the hustle and bustle of the area in front of the station and the tranquility that unfolds just a step away (demo text)."
   },
+  "office": {
+    "mainAddress": "Head Office: 4-2-8 Shiba Park, Minato-ku, Tokyo",
+    "businessHours": "Business hours: Weekdays 9:30 AM - 6:30 PM",
+    "closedOn": "Closed on: Saturdays, Sundays, and public holidays",
+    "telNumber": "Main telephone number: 03-0000-0000 (example dial)"
+  },
+  "scheduleViewing": " To request information or schedule a viewing, please use the button on each property's page (demo display).",
   "photoCredit": "Photo credit",
   "unknownDate": "Unknown date and time"
 }

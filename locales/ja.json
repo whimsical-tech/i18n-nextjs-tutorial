@@ -8,6 +8,10 @@
     "home": "ホーム",
     "propertyDetails": "物件詳細"
   },
+  "complianceBroker": "宅地建物取引業者：東京都知事（1）第000000号",
+  "complianceGuarantee": "保証協会：全国宅地建物取引業保証協会",
+  "complianceHandling": "苦情処理：お客様相談室までご連絡ください",
+  "developedBy": " このプロジェクトは、付随するブログ投稿のために ☀️ Whimsical Tech によって構築されました。",
   "propertyId": {
     "area": "エリア：",
     "propertyNotFound": "物件が見つかりません | 晴レ不動産",
@@ -28,6 +32,13 @@
     "conveniences": "コンビニまで徒歩分数、スーパーまで徒歩分数、公園まで徒歩分数…のような定型的な文章をここに置きます。実務では地図ソフトの測定値と現地確認結果を突合してください。",
     "demoText": "駅前の喧騒から一歩入ると静けさが広がる、そんなコントラストを楽しめる住環境を目指したプランニングです（デモ文）。"
   },
+  "office": {
+    "mainAddress": "本社：東京都港区芝公園4-2-8",
+    "businessHours": "営業時間：平日 9:30〜18:30",
+    "closedOn": "定休日：土曜・日曜・祝日",
+    "telNumber": "代表電話：03-0000-0000（ダイヤル例）"
+  },
+  "scheduleViewing": " 資料請求や内見のご予約は、各物件ページのボタンからお申し込みください（デモ表示）。",
   "photoCredit": "写真提供:",
   "unknownDate": "不明な日時"
 }
