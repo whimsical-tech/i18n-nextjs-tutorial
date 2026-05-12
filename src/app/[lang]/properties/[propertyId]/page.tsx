@@ -233,7 +233,7 @@ export default async function PropertyPage({ params }: PageProps) {
           <p>{t["redevelopment"]}</p>
         </section>
       </main>
-      <SiteFooter />
+      <SiteFooter params={params} />
     </div>
   );
 }

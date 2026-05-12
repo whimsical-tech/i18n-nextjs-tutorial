@@ -38,7 +38,7 @@ export default function Home({
 
         <PropertyCatalog />
       </main>
-      <SiteFooter />
+      <SiteFooter params={params} />
     </div>
   );
 }
