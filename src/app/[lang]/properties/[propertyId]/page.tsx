@@ -18,33 +18,19 @@ function formatYen(n: number) {
   return new Intl.NumberFormat("ja-JP").format(n);
 }
 
-function titleFor(p: PropertyRecord) {
-  const map: Record<string, string> = {
-    "shinjuku-park-1203": "新宿御苑スカイレジデンス 12階角部屋",
-    "meguro-river-501": "目黒川テラスハウス 501号室",
-    "yokohama-minato-902": "横浜みなとみらいタワー 9階",
-    "kawasaki-station-305": "川崎駅前グランドレジデンス 305",
-    "umeda-sky-2101": "梅田スカイコート 21階南向き",
-    "namba-loft-808": "難波ロフトマンション 808号室",
-    "shibuya-cross-402": "渋谷クロスゲート 4階メゾネット",
-    "shinagawa-bay-1502": "品川ベイサイドタワー 15階",
-    "sakai-garden-101": "堺ガーデンヒルズ 1階庭付き",
-    "yokohama-hills-2205": "横浜ヒルズレジデンス",
-    "ikebukuro-sunrise-0801": "池袋サンライズコート 8階南東向き",
-    "nakanoshima-river-1201": "中之島リバーフロント 12階",
-    "fujisawa-coast-0302": "藤沢コーストレジデンス 3階",
-    "taito-skytree-0909": "台東スカイツリービュー 9階角住戸",
-  };
-  return map[p.id] ?? "掲載物件（タイトル準備中）";
-}
+export const getDictValue = (obj: any, key: string, fallback = "") => {
+  return obj[key as keyof typeof obj] ?? fallback;
+};
 
-function cityJp(key: PropertyRecord["cityKey"]) {
-  if (key === "tokyo") return "東京都";
-  if (key === "osaka") return "大阪府";
-  return "神奈川県";
-}
-
-function NarrativeBlock({ property }: { property: PropertyRecord }) {
+function NarrativeBlock({
+  property,
+  t,
+  title,
+}: {
+  property: PropertyRecord;
+  t: { [key: string]: string };
+  title: string;
+}) {
   const area = property.areaSqm;
   const rooms = property.rooms;
   const year = property.builtYear;
@@ -53,58 +39,65 @@ function NarrativeBlock({ property }: { property: PropertyRecord }) {
     <section className={styles.section} aria-labelledby="story-heading">
       <h2 id="story-heading">物件ストーリー（読み物）</h2>
       <p>
-        このページは <strong>{titleFor(property)}</strong> のデモ紹介です。
-        専有面積は <strong>{area}㎡</strong>、間取りは{" "}
-        <strong>{rooms}LDK相当</strong>、 築年は <strong>{year}年</strong>{" "}
-        としてサンプル登録しています。
+        このページは <strong>{title}</strong> のデモ紹介です。 専有面積は{" "}
+        <strong>{area}㎡</strong>、間取りは <strong>{rooms}LDK相当</strong>、
+        築年は <strong>{year}年</strong> としてサンプル登録しています。
       </p>
-      <p>
-        朝の採光や風の通り道は図面だけでは伝わりにくいため、内見時にはカーテンの開閉状態も含めて確認することをおすすめします（一般論）。
-      </p>
-      <p>
-        ペット可否、楽器、事務所利用などの管理規約は管理会社の最新版をご確認ください。ここに書かれた内容はプレースホルダです。
-      </p>
+      <p>{t["lightAndAirflow"]} </p>
+      <p>{t["buildingPolicies"]}</p>
     </section>
   );
 }
 
-function SpecTable({ property }: { property: PropertyRecord }) {
+function SpecTable({
+  property,
+  t,
+}: {
+  property: PropertyRecord;
+  t: { [key: string]: string };
+}) {
   const kindLabel = property.listingKind === "sale" ? "売買" : "賃貸";
   const priceCell =
     property.listingKind === "sale" && property.salePriceYen
-      ? `¥${formatYen(property.salePriceYen)}（税込想定・デモ）`
+      ? `¥${formatYen(property.salePriceYen)} ${t["includingTax"]}`
       : property.monthlyRentYen
-        ? `月額 ¥${formatYen(property.monthlyRentYen)}（共益費別の例）`
-        : "価格は担当までお問い合わせください";
+        ? `${t["monthly"]} ¥${formatYen(property.monthlyRentYen)} ${t["excludingFees"]}`
+        : t["priceOnContact"];
 
   return (
     <section className={styles.section} aria-labelledby="spec-heading">
-      <h2 id="spec-heading">主要スペック</h2>
+      <h2 id="spec-heading">{t["specifications"]}</h2>
       <table className={styles.table}>
         <tbody>
           <tr>
-            <th scope="row">取引区分</th>
+            <th scope="row">{t["type"]}</th>
             <td>{kindLabel}</td>
           </tr>
           <tr>
-            <th scope="row">所在地（都道府県）</th>
-            <td>{cityJp(property.cityKey)}（詳細住所はダミー）</td>
+            <th scope="row">{t["location"]}</th>
+            <td>{t[property.cityKey]}</td>
           </tr>
           <tr>
-            <th scope="row">価格表示</th>
+            <th scope="row">{t["price"]}</th>
             <td>{priceCell}</td>
           </tr>
           <tr>
-            <th scope="row">専有面積</th>
-            <td>{property.areaSqm}㎡（壁芯／登記の別は未表記）</td>
+            <th scope="row">{t["livingArea"]}</th>
+            <td>{property.areaSqm}㎡</td>
           </tr>
           <tr>
-            <th scope="row">間取り</th>
-            <td>{property.rooms}LDK相当（家具は付きません）</td>
+            <th scope="row">{t["floorPlan"]}</th>
+            <td>
+              {property.rooms}
+              {t["LDK"]}
+            </td>
           </tr>
           <tr>
-            <th scope="row">築年</th>
-            <td>{property.builtYear}年（リノベ履歴は別紙想定）</td>
+            <th scope="row">{t["constructionYear"]}</th>
+            <td>
+              {property.builtYear}
+              {t["renovationNotice"]}
+            </td>
           </tr>
         </tbody>
       </table>
@@ -116,7 +109,7 @@ export async function generateStaticParams() {
   return PROPERTIES.map((p) => ({ propertyId: p.id }));
 }
 
-export async function generateMetadata({
+/* export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
   const { propertyId, lang } = await params;
@@ -128,11 +121,14 @@ export async function generateMetadata({
   if (!property) {
     return { title: `${t["propertyNotFound"]} | 晴レ不動産` };
   }
+
+  const dict = dictionary as NonNullable<typeof dictionary>;
+
   return {
-    title: `${titleFor(property)} | 晴レ不動産`,
-    description: `${cityJp(property.cityKey)}${t["areaDescription"]}`,
+    title: `${getDictValue(dict.propertyTitle, propertyId)} | 晴レ不動産`,
+    description: `${getDictValue(dict, property.cityKey)}${t["areaDescription"]}`,
   };
-}
+} */
 
 export default async function PropertyPage({ params }: PageProps) {
   const { propertyId, lang } = await params;
@@ -144,12 +140,15 @@ export default async function PropertyPage({ params }: PageProps) {
   const dictionary = await getTranslation(lang);
   const t = dictionary.propertyId;
 
-  const priceMain =
+  const dict = dictionary as NonNullable<typeof dictionary>;
+  const title = getDictValue(dict.propertyTitle, propertyId);
+
+  const priceText =
     property.listingKind === "sale" && property.salePriceYen
       ? `¥${formatYen(property.salePriceYen)}`
       : property.monthlyRentYen
-        ? `月額 ¥${formatYen(property.monthlyRentYen)}`
-        : "価格はお問い合わせください";
+        ? `${t["monthly"]} ¥${formatYen(property.monthlyRentYen)}`
+        : t["priceOnContact"];
 
   return (
     <div className={styles.page}>
@@ -162,11 +161,11 @@ export default async function PropertyPage({ params }: PageProps) {
         </p>
 
         <header className={styles.hero}>
-          <h1>{titleFor(property)}</h1>
+          <h1>{title}</h1>
           <figure className={styles.figure}>
             <Image
               src={`/images/${propertyId}.webp`}
-              alt={`${titleFor(property)}の外観写真（イメージ）`}
+              alt={`${title}の外観写真（イメージ）`}
               width={600}
               height={400}
               loading="eager"
@@ -194,7 +193,7 @@ export default async function PropertyPage({ params }: PageProps) {
             </span>
             <span className={styles.badgeMuted}>
               {t["area"]}
-              {cityJp(property.cityKey)}
+              {getDictValue(dict, property.cityKey)}
             </span>
             {property.isNew ? (
               <span className={styles.badgeNew} aria-label="新着物件">
@@ -203,7 +202,7 @@ export default async function PropertyPage({ params }: PageProps) {
             ) : null}
           </div>
           <div className={styles.priceRow}>
-            <p className={styles.price}>{priceMain}</p>
+            <p className={styles.price}>{priceText}</p>
             <p className={styles.priceNote}>{t["priceNotice"]}</p>
           </div>
         </header>
@@ -218,8 +217,12 @@ export default async function PropertyPage({ params }: PageProps) {
           </ul>
         </section>
 
-        <NarrativeBlock property={property} />
-        <SpecTable property={property} />
+        <NarrativeBlock
+          property={property}
+          t={dictionary["propertyId"]}
+          title={title}
+        />
+        <SpecTable property={property} t={t} />
 
         <section className={styles.section} aria-labelledby="location-heading">
           <h2 id="location-heading">{t["surroundings"]}</h2>

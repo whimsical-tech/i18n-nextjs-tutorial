@@ -10,65 +10,6 @@ type ListingFilter = "all" | ListingKind;
 type CityFilter = "all" | CityKey;
 type RoomsFilter = "all" | 1 | 2 | 3 | 4;
 
-function cityLabel(key: CityKey) {
-  if (key === "tokyo") return "東京都";
-  if (key === "osaka") return "大阪府";
-  return "神奈川県";
-}
-
-function PropertyTitle({ id }: { id: string }) {
-  switch (id) {
-    case "shinjuku-park-1203":
-      return <>新宿御苑スカイレジデンス 12階角部屋</>;
-    case "meguro-river-501":
-      return <>目黒川テラスハウス 501号室</>;
-    case "yokohama-minato-902":
-      return <>横浜みなとみらいタワー 9階</>;
-    case "kawasaki-station-305":
-      return <>川崎駅前グランドレジデンス 305</>;
-    case "umeda-sky-2101":
-      return <>梅田スカイコート 21階南向き</>;
-    case "namba-loft-808":
-      return <>難波ロフトマンション 808号室</>;
-    case "shibuya-cross-402":
-      return <>渋谷クロスゲート 4階メゾネット</>;
-    case "shinagawa-bay-1502":
-      return <>品川ベイサイドタワー 15階</>;
-    case "sakai-garden-101":
-      return <>堺ガーデンヒルズ 1階庭付き</>;
-    case "yokohama-hills-2205":
-      return <>横浜ヒルズレジデンス</>;
-    case "ikebukuro-sunrise-0801":
-      return <>池袋サンライズコート 8階南東向き</>;
-    case "nakanoshima-river-1201":
-      return <>中之島リバーフロント 12階</>;
-    case "fujisawa-coast-0302":
-      return <>藤沢コーストレジデンス 3階</>;
-    case "taito-skytree-0909":
-      return <>台東スカイツリービュー 9階角住戸</>;
-    default:
-      return <>掲載物件（名称準備中）</>;
-  }
-}
-
-function propertyCopy(p: PropertyRecord) {
-  const cityLabelJp = cityLabel(p.cityKey);
-  const roomsLabelJp = `${p.rooms}LDK相当`;
-  const areaLabelJp = `専有面積 ${p.areaSqm}㎡`;
-  const yearLabelJp = `築年 ${p.builtYear}年`;
-  const detailCta = "物件の詳細を見る";
-  const thumbCaption = p.listingKind === "sale" ? "売買" : "賃貸";
-
-  return {
-    cityLabel: `所在地：${cityLabelJp}`,
-    roomsLabel: `間取り：${roomsLabelJp}`,
-    areaLabel: areaLabelJp,
-    yearLabel: yearLabelJp,
-    detailCta,
-    thumbCaption,
-  };
-}
-
 function StatsRibbon({
   matchedCount,
   listingFilter,
@@ -337,12 +278,7 @@ export function PropertyCatalog() {
           ) : (
             <div className={styles.grid}>
               {metrics.filtered.map((p) => (
-                <PropertyCard
-                  key={p.id}
-                  property={p}
-                  title={<PropertyTitle id={p.id} />}
-                  copy={propertyCopy(p)}
-                />
+                <PropertyCard key={p.id} property={p} />
               ))}
             </div>
           )}

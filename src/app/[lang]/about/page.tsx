@@ -34,7 +34,7 @@ export default async function AboutPage({
       <main className={styles.main}>
         <div>
           <p className={styles.kicker}>About Hare Real Estate</p>
-          <h1 className={styles.title}>会社概要（プレースホルダ）</h1>
+          <h1 className={styles.title}>{t["companyProfile"]}</h1>
           <p className={styles.lead}>{t["note"]}</p>
         </div>
 

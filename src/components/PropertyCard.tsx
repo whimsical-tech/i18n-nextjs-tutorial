@@ -9,40 +9,25 @@ function formatYen(n: number) {
   return new Intl.NumberFormat("ja-JP").format(n);
 }
 
-type Copy = {
-  cityLabel: string;
-  roomsLabel: string;
-  areaLabel: string;
-  yearLabel: string;
-  detailCta: string;
-  thumbCaption: string;
-};
+export function PropertyCard({ property }: { property: PropertyRecord }) {
+  const { t, i18n } = useTranslation();
+  const currentLocale = i18n.language;
 
-export function PropertyCard({
-  property,
-  title,
-  copy,
-}: {
-  property: PropertyRecord;
-  title: ReactNode;
-  copy: Copy;
-}) {
   const priceText =
     property.listingKind === "sale" && property.salePriceYen
       ? `¥${formatYen(property.salePriceYen)}`
       : property.monthlyRentYen
-        ? `月額 ¥${formatYen(property.monthlyRentYen)}`
-        : "価格はお問い合わせください";
+        ? `${t("propertyId.monthly")} ¥${formatYen(property.monthlyRentYen)}`
+        : t("propertyId.priceOnContact");
 
-  const { i18n } = useTranslation();
-  const currentLocale = i18n.language;
+  const title = t(`propertyTitle.${property.id}`);
 
   return (
     <article className={styles.card}>
       <Link
         href={`/${currentLocale}/properties/${property.id}`}
         className={styles.cardLink}
-        aria-label={`${title}の詳細を見る`}
+        aria-label={`${title} ${t("viewDetails")}`}
       >
         <div className={styles.thumbContainer}>
           <Image
@@ -55,9 +40,9 @@ export function PropertyCard({
           />
 
           <div className={styles.thumbBadges}>
-            <span className={styles.pill}>{copy.thumbCaption}</span>
+            <span className={styles.pill}>{property.listingKind}</span>
             {property.isNew && (
-              <span className={styles.newBadge} aria-label="新着物件">
+              <span className={styles.newBadge} aria-label={t("newListings")}>
                 NEW
               </span>
             )}
@@ -69,10 +54,17 @@ export function PropertyCard({
             <span className={styles.id}>ID: {property.id}</span>
           </div>
           <div className={styles.meta}>
-            <span>{copy.cityLabel}</span>
-            <span>{copy.roomsLabel}</span>
-            <span>{copy.areaLabel}</span>
-            <span>{copy.yearLabel}</span>
+            <span>{t(`propertyId.${property.cityKey}`)}</span>
+            <span>
+              {`${t("propertyId.floorPlan")}: ${property.rooms}
+              ${t("propertyId.LDK")}`}
+            </span>
+            <span>{`${t("propertyId.livingArea")} ${property.areaSqm} ㎡`}</span>
+            <span>
+              {`${t("propertyId.constructionYear")}
+              ${property.builtYear}
+              ${t("propertyId.year")} `}
+            </span>
           </div>
           <p className={styles.price}>{priceText}</p>
         </div>
