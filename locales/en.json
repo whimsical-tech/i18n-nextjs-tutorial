@@ -107,6 +107,10 @@
     "closedOn": "Closed on: Saturdays, Sundays, and public holidays",
     "telNumber": "Main telephone number: 03-0000-0000 (example dial)"
   },
+  "siteHeader": {
+    "home": "Homepage",
+    "about": "About us"
+  },
   "mainPage": {
     "filterNotice": "The panel below displays the number of transactions in real time, broken down by three axes: transaction type, city, and number of rooms. All numbers are the result of client-side filtering.",
     "listedProperties": "Listed Properties",

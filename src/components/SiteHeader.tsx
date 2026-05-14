@@ -30,7 +30,7 @@ export async function SiteHeader({
               active === "home" ? styles.navLinkActive : ""
             }`}
           >
-            ホーム
+            {t["siteHeader"].home}
           </Link>
           <Link
             href={`/${lang}/about`}
@@ -38,7 +38,7 @@ export async function SiteHeader({
               active === "about" ? styles.navLinkActive : ""
             }`}
           >
-            会社概要
+            {t["siteHeader"].about}
           </Link>
           <LanguageSwitcher />
         </nav>
