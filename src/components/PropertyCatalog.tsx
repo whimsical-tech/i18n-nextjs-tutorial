@@ -1,10 +1,11 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import type { CityKey, ListingKind, PropertyRecord } from "@/lib/properties";
+import type { CityKey, ListingKind } from "@/lib/properties";
 import { PROPERTIES, sortPropertiesForDisplay } from "@/lib/properties";
 import { PropertyCard } from "./PropertyCard";
 import styles from "./PropertyCatalog.module.css";
+import { useTranslation } from "react-i18next";
 
 type ListingFilter = "all" | ListingKind;
 type CityFilter = "all" | CityKey;
@@ -21,30 +22,35 @@ function StatsRibbon({
   cityFilter: CityFilter;
   roomsFilter: RoomsFilter;
 }) {
+  const { t } = useTranslation();
   return (
-    <section className={styles.stats} aria-label="掲載状況のサマリー">
-      <p className={styles.statsTitle}>ライブラリ内の集計（デモ）</p>
+    <section className={styles.stats} aria-label={t("propertyCatalog.summary")}>
       <div className={styles.statsGrid}>
         <div className={styles.statBlock}>
-          <span className={styles.statLabel}>現在の絞り込み結果</span>
+          <span className={styles.statLabel}>
+            {t("propertyCatalog.currentlyFiltered")}
+          </span>
           <span className={styles.statValue}>{matchedCount}</span>
           <span className={styles.statHint}>
-            取引区分：
+            {t("propertyCatalog.type")}
+            {": "}
             {listingFilter === "all"
-              ? "すべて表示"
+              ? t("propertyCatalog.showEverything")
               : listingFilter === "sale"
-                ? "売買のみ"
-                : "賃貸のみ"}
-            ／都市：
+                ? t("propertyCatalog.buyAndSell")
+                : t("propertyCatalog.rent")}
+            {t("propertyCatalog.city")}
             {cityFilter === "all"
-              ? "全域"
+              ? t("propertyCatalog.wholeArea")
               : cityFilter === "tokyo"
-                ? "東京都"
+                ? t("propertyId.tokyo")
                 : cityFilter === "osaka"
-                  ? "大阪府"
-                  : "神奈川県"}
-            ／部屋数：
-            {roomsFilter === "all" ? "指定なし" : `${roomsFilter}LDK系統`}
+                  ? t("propertyId.osaka")
+                  : t("propertyId.kanagawa")}
+            {t("propertyCatalog.floorPlan")}
+            {roomsFilter === "all"
+              ? t("propertyCatalog.noSpecification")
+              : `${roomsFilter}${t("propertyCatalog.LDKsystem")}`}
           </span>
         </div>
       </div>
@@ -56,6 +62,7 @@ export function PropertyCatalog() {
   const [listingFilter, setListingFilter] = useState<ListingFilter>("all");
   const [cityFilter, setCityFilter] = useState<CityFilter>("all");
   const [roomsFilter, setRoomsFilter] = useState<RoomsFilter>("all");
+  const { t } = useTranslation();
 
   const metrics = useMemo(() => {
     const totalListed = PROPERTIES.length;
@@ -101,10 +108,18 @@ export function PropertyCatalog() {
         <aside className={styles.stickyAside} aria-label="検索条件・集計">
           <div className={styles.filterStack}>
             <section className={styles.filters} aria-label="物件検索フィルター">
-              <h2 className={styles.filtersTitle}>条件で絞り込む</h2>
+              <h2 className={styles.filtersTitle}>
+                {t("propertyCatalog.filterByConditions")}
+              </h2>
               <div className={styles.group}>
-                <p className={styles.groupLabel}>取引の種類</p>
-                <div className={styles.row} role="group" aria-label="取引区分">
+                <p className={styles.groupLabel}>
+                  {t("propertyCatalog.transactionType")}
+                </p>
+                <div
+                  className={styles.row}
+                  role="group"
+                  aria-label={t("propertyCatalog.type")}
+                >
                   <button
                     type="button"
                     className={`${styles.chip} ${
@@ -112,7 +127,7 @@ export function PropertyCatalog() {
                     }`}
                     onClick={() => setListingFilter("all")}
                   >
-                    すべて
+                    {t("propertyCatalog.all")}
                   </button>
                   <button
                     type="button"
@@ -121,7 +136,7 @@ export function PropertyCatalog() {
                     }`}
                     onClick={() => setListingFilter("sale")}
                   >
-                    売買のみ
+                    {t("propertyCatalog.buyAndSell")}
                   </button>
                   <button
                     type="button"
@@ -130,17 +145,19 @@ export function PropertyCatalog() {
                     }`}
                     onClick={() => setListingFilter("rent")}
                   >
-                    賃貸のみ
+                    {t("propertyCatalog.rent")}
                   </button>
                 </div>
               </div>
 
               <div className={styles.group}>
-                <p className={styles.groupLabel}>都市（都道府県）</p>
+                <p className={styles.groupLabel}>
+                  {t("propertyCatalog.prefectures")}
+                </p>
                 <div
                   className={styles.row}
                   role="group"
-                  aria-label="都市フィルター"
+                  aria-label={t("propertyCatalog.cityFilter")}
                 >
                   <button
                     type="button"
@@ -149,7 +166,7 @@ export function PropertyCatalog() {
                     }`}
                     onClick={() => setCityFilter("all")}
                   >
-                    指定なし
+                    {t("propertyCatalog.noSpecification")}
                   </button>
                   <button
                     type="button"
@@ -158,7 +175,7 @@ export function PropertyCatalog() {
                     }`}
                     onClick={() => setCityFilter("tokyo")}
                   >
-                    東京都
+                    {t("propertyId.tokyo")}
                   </button>
                   <button
                     type="button"
@@ -167,7 +184,7 @@ export function PropertyCatalog() {
                     }`}
                     onClick={() => setCityFilter("osaka")}
                   >
-                    大阪府
+                    {t("propertyId.osaka")}
                   </button>
                   <button
                     type="button"
@@ -176,17 +193,19 @@ export function PropertyCatalog() {
                     }`}
                     onClick={() => setCityFilter("kanagawa")}
                   >
-                    神奈川県
+                    {t("propertyId.kanagawa")}
                   </button>
                 </div>
               </div>
 
               <div className={styles.group}>
-                <p className={styles.groupLabel}>部屋数の目安（LDK）</p>
+                <p className={styles.groupLabel}>
+                  {t("propertyCatalog.numberOfRooms")}
+                </p>
                 <div
                   className={styles.row}
                   role="group"
-                  aria-label="間取りフィルター"
+                  aria-label={t("propertyCatalog.floorPlanFilter")}
                 >
                   <button
                     type="button"
@@ -195,7 +214,7 @@ export function PropertyCatalog() {
                     }`}
                     onClick={() => setRoomsFilter("all")}
                   >
-                    こだわらない
+                    {t("any")}
                   </button>
                   <button
                     type="button"
@@ -247,10 +266,10 @@ export function PropertyCatalog() {
                       setRoomsFilter("all");
                     }}
                   >
-                    条件をすべてクリア
+                    {t("propertyCatalog.reset")}
                   </button>
                   <span className={styles.resetNote}>
-                    クリア後は掲載ライブラリの全件が再表示されます
+                    {t("propertyCatalog.resetNotice")}
                   </span>
                 </div>
               )}
@@ -269,11 +288,9 @@ export function PropertyCatalog() {
           {matchedCount === 0 ? (
             <div className={styles.empty}>
               <p className={styles.emptyTitle}>
-                該当する物件が見つかりませんでした
+                {t("propertyCatalog.noResults")}
               </p>
-              <p>
-                条件を緩めるか、「条件をすべてクリア」からやり直してください。
-              </p>
+              <p>{t("propertyCatalog.changeCriteria")}</p>
             </div>
           ) : (
             <div className={styles.grid}>

@@ -57,11 +57,6 @@
     "fujisawa-coast-0302": "Fujisawa Coast Residence, 3rd floor",
     "taito-skytree-0909": "Taito Skytree View, 9th floor corner unit"
   },
-  "filter": {
-    "type": "type",
-    "buyAndSell": "buy and sell only",
-    "rent": "rent only"
-  },
   "propertyId": {
     "area": "area",
     "propertyNotFound": "No properties found",
@@ -106,6 +101,31 @@
     "businessHours": "Business hours: Weekdays 9:30 AM - 6:30 PM",
     "closedOn": "Closed on: Saturdays, Sundays, and public holidays",
     "telNumber": "Main telephone number: 03-0000-0000 (example dial)"
+  },
+  "propertyCatalog": {
+    "noSpecification": "no specification",
+    "LDKsystem": "LDK system",
+    "all": "all",
+    "prefectures": "Cities (Prefectures)",
+    "numberOfRooms": "Estimated number of rooms (LDK)",
+    "cityFilter": "City filter",
+    "city": "/city: ",
+    "floorPlanFilter": "Floor plan filter",
+    "floorPlan": "/Number of rooms: ",
+    "summary": "Summary of publication status",
+    "any": "any",
+    "reset": "Reset all conditions",
+    "noResults": "No matching properties were found.",
+    "changeCriteria": "Please change search parameters or start over.",
+    "resetNotice": "After clearing the page, all items in the listed library will be displayed again.",
+    "wholeArea": "whole area",
+    "type": "type",
+    "buyAndSell": "buy and sell only",
+    "rent": "rent only",
+    "showEverything": "show everything",
+    "currentlyFiltered": "Currently filtered results",
+    "filterByConditions": "Filter by conditions",
+    "transactionType": "Types of transactions"
   },
   "siteHeader": {
     "home": "Homepage",

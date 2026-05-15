@@ -61,10 +61,30 @@
     "fujisawa-coast-0302": "藤沢コーストレジデンス 3階",
     "taito-skytree-0909": "台東スカイツリービュー 9階角住戸"
   },
-  "filter": {
+  "propertyCatalog": {
+    "noSpecification": "指定なし",
+    "LDKsystem": "LDK系統",
+    "wholeArea": "全域",
+    "all": "すべて",
+    "prefectures": "都市（都道府県）",
+    "city": "／都市：",
+    "cityFilter": "都市フィルター",
+    "numberOfRooms": "部屋数の目安（LDK）",
+    "floorPlan": "／部屋数：",
+    "summary": "掲載状況のサマリー",
+    "reset": "条件をすべてクリア",
+    "noResults": "該当する物件が見つかりませんでした",
+    "changeCriteria": "条件を緩めるか、「条件をすべてクリア」からやり直してください。",
+    "resetNotice": "クリア後は掲載ライブラリの全件が再表示されます",
+    "floorPlanFilter": "間取りフィルター",
+    "any": "こだわらない",
     "type": "取引区分",
     "buyAndSell": "売買のみ",
-    "rent": "賃貸のみ"
+    "rent": "賃貸のみ",
+    "showEverything": "すべて表示",
+    "currentlyFiltered": "現在の絞り込み結果",
+    "filterByConditions": "条件で絞り込む",
+    "transactionType": "取引の種類"
   },
   "propertyId": {
     "area": "エリア：",
