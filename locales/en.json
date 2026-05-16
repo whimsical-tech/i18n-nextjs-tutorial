@@ -58,6 +58,8 @@
     "fujisawa-coast-0302": "Fujisawa Coast Residence, 3rd floor",
     "taito-skytree-0909": "Taito Skytree View, 9th floor corner unit"
   },
+  "creditPrefix": "This project was developed by",
+  "creditSuffix": "for an accompanying blog post.",
   "propertyId": {
     "area": "Area: ",
     "propertyNotFound": "No properties found",

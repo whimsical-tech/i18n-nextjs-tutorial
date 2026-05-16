@@ -31,17 +31,16 @@ export async function SiteFooter({
         </div>
       </div>
       <div className={styles.bottom}>
-        © {new Date().getFullYear()}{" "}
-        このプロジェクトは、付随するブログ投稿のために{" "}
+        © {new Date().getFullYear()} {t["creditPrefix"]}{" "}
         <a
-          href="https://whimsical-tech.github.io/en"
+          href="https://whimsical-tech.vercel.app/"
           target="_blank"
           rel="noopener noreferrer"
           className={styles.credit}
         >
           ☀️ Whimsical Tech
         </a>{" "}
-        によって構築されました。
+        {t["creditSuffix"]}
       </div>
     </footer>
   );

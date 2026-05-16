@@ -87,6 +87,8 @@
     "filterByConditions": "条件で絞り込む",
     "transactionType": "取引の種類"
   },
+  "creditPrefix": "このプロジェクトは、付随するブログ投稿のために",
+  "creditSuffix": "によって構築されました。",
   "propertyId": {
     "area": "エリア：",
     "propertyNotFound": "物件が見つかりません | 晴レ不動産",
