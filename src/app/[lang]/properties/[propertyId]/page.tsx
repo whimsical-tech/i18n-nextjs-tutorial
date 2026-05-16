@@ -22,33 +22,6 @@ export const getDictValue = (obj: any, key: string, fallback = "") => {
   return obj[key as keyof typeof obj] ?? fallback;
 };
 
-function NarrativeBlock({
-  property,
-  t,
-  title,
-}: {
-  property: PropertyRecord;
-  t: { [key: string]: string };
-  title: string;
-}) {
-  const area = property.areaSqm;
-  const rooms = property.rooms;
-  const year = property.builtYear;
-
-  return (
-    <section className={styles.section} aria-labelledby="story-heading">
-      <h2 id="story-heading">物件ストーリー（読み物）</h2>
-      <p>
-        このページは <strong>{title}</strong> のデモ紹介です。 専有面積は{" "}
-        <strong>{area}㎡</strong>、間取りは <strong>{rooms}LDK相当</strong>、
-        築年は <strong>{year}年</strong> としてサンプル登録しています。
-      </p>
-      <p>{t["lightAndAirflow"]} </p>
-      <p>{t["buildingPolicies"]}</p>
-    </section>
-  );
-}
-
 function SpecTable({
   property,
   t,
@@ -56,7 +29,10 @@ function SpecTable({
   property: PropertyRecord;
   t: { [key: string]: string };
 }) {
-  const kindLabel = property.listingKind === "sale" ? "売買" : "賃貸";
+  const kindLabel =
+    property.listingKind === "sale"
+      ? t["saleProperties"]
+      : t["rentalProperties"];
   const priceCell =
     property.listingKind === "sale" && property.salePriceYen
       ? `¥${formatYen(property.salePriceYen)} ${t["includingTax"]}`
@@ -218,11 +194,6 @@ export default async function PropertyPage({ params }: PageProps) {
           </ul>
         </section>
 
-        <NarrativeBlock
-          property={property}
-          t={dictionary["propertyId"]}
-          title={title}
-        />
         <SpecTable property={property} t={t} />
 
         <section className={styles.section} aria-labelledby="location-heading">

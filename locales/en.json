@@ -4,20 +4,20 @@
     "mainText": "Your last visit was <strong>{{date}}</strong>. Since then, <strong>{{count}} new listings</strong> have been added. In the list, listings with <strong>NEW</strong> are displayed at the top."
   },
   "about": {
-    "overviewTitle": "Company Overview (Fictional)",
-    "companyProfile": "Company Profile (Placeholder)",
+    "overviewTitle": "Company Overview",
+    "companyProfile": "Company Profile",
     "companyName": "Company name: Hare Real Estate Co., Ltd. (Japanese phonetic spelling: Hare Fudosan)",
     "address": "Head office address: 4-2-8 Shiba Park, Minato-ku, Tokyo (tentative)",
-    "capital": "Capital: 100 million yen (demo value)",
-    "founding": "Established: April 1, 2010 (demo value)",
+    "capital": "Capital: 100 million yen",
+    "founding": "Established: April 1, 2010",
     "valuesTitle": "Values ​​(examples of behavioral guidelines)",
     "transparencyTitle": "Prioritizing transparency",
-    "transparencyText": "We will share important information at an early stage and ensure that we can track the history of drawing revisions and price changes (demo text).",
+    "transparencyText": "We will share important information at an early stage and ensure that we can track the history of drawing revisions and price changes.",
     "locationTitle": "Switching back and forth between the location and the map",
-    "locationText": "We don't just rely on the sense of distance on the screen; we repeatedly verify the walking route (demo text).",
-    "teamText": "To ensure the process can proceed even when the person in charge is absent, we will leave a record of the decision-making process in the notebook and CRM (demo text).",
+    "locationText": "We don't just rely on the sense of distance on the screen; we repeatedly verify the walking route.",
+    "teamText": "To ensure the process can proceed even when the person in charge is absent, we will leave a record of the decision-making process in the notebook and CRM.",
     "teamTitle": "Team handover",
-    "historyTitle": "History (dummy timeline)",
+    "historyTitle": "History",
     "history2010": "2010: Founded in Minato-ku, Tokyo, starting business with rental brokerage",
     "history2013": "2013: Established a sales division, fully entering the resale of used condominiums",
     "history2016": "2016: Opened Osaka branch, expanding network in the Kansai region",
@@ -25,7 +25,7 @@
     "history2022": "2022: Released a beta version of the customer portal (unrelated to this site)",
     "history2026": "2026: Released a demo Next.js app (this page)",
     "footerNote": "License numbers, affiliated organizations, and complaint handling contact information are all consolidated in the footer. Please be sure to update this information to reflect the most current version in your actual work.",
-    "employeesCount": "Number of employees: Approximately 180 (total for the entire group, demo value)",
+    "employeesCount": "Number of employees: Approximately 180 (total for the entire group)",
     "businessActivities": "Business activities: Buying and selling brokerage, rental brokerage, property management, real estate consulting",
     "missionTitle": "Mission",
     "mission": "Based on our belief that \"a home is the stage for life,\" we propose living environments tailored to each customer's individual life stage. Our role is to articulate the balance between asset value and comfort, transcending the boundaries of buying and renting.",
@@ -63,16 +63,16 @@
   "propertyId": {
     "area": "Area: ",
     "propertyNotFound": "No properties found",
-    "areaDescription": "Area listing page (demonstration for learning)",
+    "areaDescription": "Area listing page",
     "propertyCode": "Property code: ",
     "saleProperties": "Properties for sale",
     "rentalProperties": "Rental properties",
     "priceNotice": "The displayed price is a sample price. Consumption tax, common area maintenance fees, parking fees, etc. must be confirmed separately.",
-    "catchphrase": "Catchphrase (fictional)",
+    "catchphrase": "Catchphrase",
     "storagePlan": "Storage plan: Based on adjustable shelves, with a focus on creating a flow that avoids placing seasonal appliances on the floor.",
     "kitchen": "Kitchen: We propose a layout that allows family members to see each other, assuming an open-plan design.",
     "bathroom": "Bathroom: This is dummy text assuming a modern bathroom with a ventilation and drying system.",
-    "LDK": "(furniture not included)",
+    "LDK": " (furniture not included)",
     "year": "",
     "tokyo": "Tokyo",
     "osaka": "Osaka",
@@ -81,7 +81,7 @@
     "location": "Location (Prefecture)",
     "type": "Type",
     "specifications": "Key Specifications",
-    "includingTax": "(Estimated price including tax · Demo)",
+    "includingTax": "(Estimated price including tax)",
     "excludingFees": "(Example excluding common service fees)",
     "monthly": "monthly",
     "lightAndAirflow": "Since morning light and airflow are difficult to convey from floor plans alone, we recommend checking the condition of the curtains during your viewing (this is a general rule).",
@@ -97,7 +97,7 @@
     "redevelopment": "If there are any rebuilding or redevelopment plans in the surrounding area, please conduct interviews with potential buyers or tenants yourself (template wording).",
     "precautions": "Precautions (common)",
     "conveniences": "This section contains standard phrases such as \"walking time to the convenience store,\" \"walking time to the supermarket,\" \"walking time to the park,\" etc. In practice, please compare the measurements from the mapping software with the results of on-site verification.",
-    "demoText": "This plan aims to create a living environment where you can enjoy the contrast between the hustle and bustle of the area in front of the station and the tranquility that unfolds just a step away (demo text)."
+    "demoText": "This plan aims to create a living environment where you can enjoy the contrast between the hustle and bustle of the area in front of the station and the tranquility that unfolds just a step away."
   },
   "office": {
     "mainAddress": "Head Office: 4-2-8 Shiba Park, Minato-ku, Tokyo",
@@ -137,7 +137,7 @@
   "mainPage": {
     "filterNotice": "The panel below displays the number of transactions in real time, broken down by three axes: transaction type, city, and number of rooms. All numbers are the result of client-side filtering.",
     "listedProperties": "Listed Properties",
-    "disclaimer": "Please refer to the land register and important matters explanation document for floor plans, floor area, and year of construction (demo text)."
+    "disclaimer": "Please refer to the land register and important matters explanation document for floor plans, floor area, and year of construction."
   },
   "newListings": "new listings",
   "aside": {
@@ -153,7 +153,7 @@
     "portfolioSupport": "We can also help you organize your investment and personal property portfolios.",
     "explanation": "This site is a learning demo for Next.js App Router. The listed prices, photos, and surrounding environment are fictitious examples."
   },
-  "scheduleViewing": " To request information or schedule a viewing, please use the button on each property's page (demo display).",
+  "scheduleViewing": " To request information or schedule a viewing, please use the button on each property's page.",
   "photoCredit": "Photo credit",
   "unknownDate": "Unknown date and time"
 }
