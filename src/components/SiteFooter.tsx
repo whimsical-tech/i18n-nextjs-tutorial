@@ -30,7 +30,7 @@ export function SiteFooter() {
         © {new Date().getFullYear()}{" "}
         このプロジェクトは、付随するブログ投稿のために{" "}
         <a
-          href="https://whimsical-tech.github.io/en"
+          href="https://whimsical-tech.vercel.app/"
           target="_blank"
           rel="noopener noreferrer"
           className={styles.credit}
