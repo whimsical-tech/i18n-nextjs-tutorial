@@ -81,7 +81,7 @@ export default async function AboutPage({
 
         <p className={styles.note}>{t["footerNote"]} </p>
       </main>
-      <SiteFooter params={params} />
+      <SiteFooter t={dictionary} />
     </div>
   );
 }

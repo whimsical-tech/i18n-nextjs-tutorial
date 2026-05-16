@@ -142,6 +142,7 @@ export default async function PropertyPage({ params }: PageProps) {
 
   const dict = dictionary as NonNullable<typeof dictionary>;
   const title = getDictValue(dict.propertyTitle, propertyId);
+  const area = dictionary["propertyId"][property.cityKey];
 
   const priceText =
     property.listingKind === "sale" && property.salePriceYen
@@ -193,7 +194,7 @@ export default async function PropertyPage({ params }: PageProps) {
             </span>
             <span className={styles.badgeMuted}>
               {t["area"]}
-              {getDictValue(dict, property.cityKey)}
+              {area}
             </span>
             {property.isNew ? (
               <span className={styles.badgeNew} aria-label="新着物件">
@@ -236,7 +237,7 @@ export default async function PropertyPage({ params }: PageProps) {
           <p>{t["redevelopment"]}</p>
         </section>
       </main>
-      <SiteFooter params={params} />
+      <SiteFooter t={dictionary} />
     </div>
   );
 }

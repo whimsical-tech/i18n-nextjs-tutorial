@@ -31,14 +31,14 @@ export default async function Home({
               <LastVisitNotice />
             </div>
             <div className={styles.sectionHeadHero}>
-              <CatalogHeroAside t={dictionary.aside} />
+              <CatalogHeroAside {...dictionary["aside"]} />
             </div>
           </div>
         </header>
 
         <PropertyCatalog />
       </main>
-      <SiteFooter params={params} />
+      <SiteFooter t={dictionary} />
     </div>
   );
 }

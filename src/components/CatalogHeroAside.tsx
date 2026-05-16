@@ -1,6 +1,6 @@
 import styles from "./CatalogHeroAside.module.css";
 
-export function CatalogHeroAside(t: { [key: string]: string }) {
+export function CatalogHeroAside(t: Record<string, string>) {
   return (
     <section className={styles.root} aria-labelledby="catalog-hero-title">
       <div className={styles.inner}>
@@ -16,13 +16,12 @@ export function CatalogHeroAside(t: { [key: string]: string }) {
           <span className={styles.pill}>{t["service4"]}</span>
         </div>
 
-        <div className={styles.strengths} aria-label="サービス概要メモ">
+        <div className={styles.strengths}>
           <p className={styles.strengthsTitle}>{t["strenghts"]}</p>
           <ul className={styles.strengthsList}>
             <li>{t["distanceInfo"]}</li>
             <li>{t["portfolioSupport"]}</li>
             <li>{t["sameDayConsultations"]}</li>
-            <li>{t["internationalSupport"]}</li>
           </ul>
         </div>
       </div>

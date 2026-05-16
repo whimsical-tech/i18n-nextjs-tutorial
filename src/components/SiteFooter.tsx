@@ -3,23 +3,20 @@ import { getTranslation } from "@/locales";
 import { Locale } from "@/i18n-config";
 
 export async function SiteFooter({
-  params,
+  t,
 }: {
-  params: Promise<{ lang: Locale }>;
+  t: Awaited<ReturnType<typeof getTranslation>>;
 }) {
-  const { lang } = await params;
-
-  const t = await getTranslation(lang);
   return (
     <footer className={styles.footer}>
       <div className={styles.inner}>
         <div>
           <p className={styles.columnTitle}>Office</p>
           <ul className={styles.list}>
-            <li>{t["office.mainAddress"]}</li>
-            <li>{t["office.businessHours"]}</li>
-            <li>{t["office.closedOn"]}</li>
-            <li>{t["office.telNumber"]}</li>
+            <li>{t["office"].mainAddress}</li>
+            <li>{t["office"].businessHours}</li>
+            <li>{t["office"].closedOn}</li>
+            <li>{t["office"].telNumber}</li>
           </ul>
           <p className={styles.note}>{t["scheduleViewing"]}</p>
         </div>

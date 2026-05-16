@@ -1,7 +1,7 @@
 {
   "lastVisit": {
     "dateWarning": "The displayed date is always today's date (local display for demo purposes)",
-    "mainText": "Your last visit was <1>{{date}}</1>. Since then, <3>{{count}} new listings</3> have been added. In the list, listings with <5>NEW</5> are displayed at the top."
+    "mainText": "Your last visit was <strong>{{date}}</strong>. Since then, <strong>{{count}} new listings</strong> have been added. In the list, listings with <strong>NEW</strong> are displayed at the top."
   },
   "about": {
     "overviewTitle": "Company Overview (Fictional)",
@@ -32,6 +32,7 @@
     "note": "The company history, message from the representative, and organizational chart presented here are all placeholders. They are not related to any actual company. To ensure sufficient text length, the headings are arranged in a manner commonly seen in the industry."
   },
   "slogan": "One-stop support for buying, selling, and renting throughout Japan",
+  "companyName": "Hare Real Estate",
   "breadcrumb": {
     "home": "Home",
     "propertyDetails": "Property Details"
@@ -58,10 +59,10 @@
     "taito-skytree-0909": "Taito Skytree View, 9th floor corner unit"
   },
   "propertyId": {
-    "area": "area",
+    "area": "Area: ",
     "propertyNotFound": "No properties found",
     "areaDescription": "Area listing page (demonstration for learning)",
-    "propertyCode": "Property code",
+    "propertyCode": "Property code: ",
     "saleProperties": "Properties for sale",
     "rentalProperties": "Rental properties",
     "priceNotice": "The displayed price is a sample price. Consumption tax, common area maintenance fees, parking fees, etc. must be confirmed separately.",
@@ -74,7 +75,7 @@
     "tokyo": "Tokyo",
     "osaka": "Osaka",
     "kanagawa": "Kawasaki",
-    "floorPlan": "Number of rooms:",
+    "floorPlan": "Number of rooms",
     "location": "Location (Prefecture)",
     "type": "Type",
     "specifications": "Key Specifications",
@@ -103,25 +104,25 @@
     "telNumber": "Main telephone number: 03-0000-0000 (example dial)"
   },
   "propertyCatalog": {
-    "noSpecification": "no specification",
+    "noSpecification": "No specification",
     "LDKsystem": "LDK system",
-    "all": "all",
+    "all": "All",
     "prefectures": "Cities (Prefectures)",
     "numberOfRooms": "Estimated number of rooms (LDK)",
     "cityFilter": "City filter",
-    "city": "/city: ",
+    "city": " /City: ",
     "floorPlanFilter": "Floor plan filter",
     "floorPlan": "/Number of rooms: ",
     "summary": "Summary of publication status",
-    "any": "any",
+    "any": "Any",
     "reset": "Reset all conditions",
     "noResults": "No matching properties were found.",
     "changeCriteria": "Please change search parameters or start over.",
     "resetNotice": "After clearing the page, all items in the listed library will be displayed again.",
-    "wholeArea": "whole area",
-    "type": "type",
-    "buyAndSell": "buy and sell only",
-    "rent": "rent only",
+    "allAreas": "All areas",
+    "type": "Type",
+    "buyAndSell": "Buy and sell only",
+    "rent": "Rent only",
     "showEverything": "show everything",
     "currentlyFiltered": "Currently filtered results",
     "filterByConditions": "Filter by conditions",
@@ -148,7 +149,7 @@
     "internationalSupport": "We can also include English-language materials for our international customers.",
     "distanceInfo": "I will provide you with notes on both the walking time from the station and the actual running time.",
     "portfolioSupport": "We can also help you organize your investment and personal property portfolios.",
-    "explanation": "This site is a learning demo for Next.js App Router. The listed prices, photos, and surrounding environment are fictitious examples and do not guarantee actual transactions. Please always verify the latest information on-site."
+    "explanation": "This site is a learning demo for Next.js App Router. The listed prices, photos, and surrounding environment are fictitious examples."
   },
   "scheduleViewing": " To request information or schedule a viewing, please use the button on each property's page (demo display).",
   "photoCredit": "Photo credit",

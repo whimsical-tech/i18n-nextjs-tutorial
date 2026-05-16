@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useEffect, useState } from "react";
 import type { CityKey, ListingKind } from "@/lib/properties";
 import { PROPERTIES, sortPropertiesForDisplay } from "@/lib/properties";
 import { PropertyCard } from "./PropertyCard";
@@ -10,6 +10,152 @@ import { useTranslation } from "react-i18next";
 type ListingFilter = "all" | ListingKind;
 type CityFilter = "all" | CityKey;
 type RoomsFilter = "all" | 1 | 2 | 3 | 4;
+
+type loadingState = "loading" | "ready";
+
+function PropertyCatalogSkeleton() {
+  return (
+    <div className={styles.wrap}>
+      <div className={styles.catalogRow}>
+        <aside className={styles.stickyAside} aria-hidden="true">
+          <div className={styles.filterStack}>
+            <section className={styles.filters}>
+              <div className={styles.filtersTitle}>
+                <div className={styles.skeletonLine} style={{ width: "60%" }} />
+              </div>
+
+              <div className={styles.group}>
+                <div className={styles.groupLabel}>
+                  <div
+                    className={styles.skeletonLine}
+                    style={{ width: "40%" }}
+                  />
+                </div>
+                <div className={styles.row} role="group">
+                  {[1, 2, 3].map((i) => (
+                    <div
+                      key={i}
+                      className={`${styles.chip} ${styles.skeletonChip}`}
+                    >
+                      <div
+                        className={styles.skeletonLine}
+                        style={{ width: "70%" }}
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className={styles.group}>
+                <div className={styles.groupLabel}>
+                  <div
+                    className={styles.skeletonLine}
+                    style={{ width: "35%" }}
+                  />
+                </div>
+                <div className={styles.row} role="group">
+                  {[1, 2, 3, 4].map((i) => (
+                    <div
+                      key={i}
+                      className={`${styles.chip} ${styles.skeletonChip}`}
+                    >
+                      <div
+                        className={styles.skeletonLine}
+                        style={{ width: "60%" }}
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className={styles.group}>
+                <div className={styles.groupLabel}>
+                  <div
+                    className={styles.skeletonLine}
+                    style={{ width: "45%" }}
+                  />
+                </div>
+                <div className={styles.row} role="group">
+                  {[1, 2, 3, 4, 5].map((i) => (
+                    <div
+                      key={i}
+                      className={`${styles.chip} ${styles.skeletonChip}`}
+                    >
+                      <div
+                        className={styles.skeletonLine}
+                        style={{ width: "50%" }}
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className={styles.resetRow}>
+                <div className={`${styles.reset} ${styles.skeletonBtn}`}>
+                  <div
+                    className={styles.skeletonLine}
+                    style={{ width: "60%" }}
+                  />
+                </div>
+                <div className={styles.resetNote}>
+                  <div
+                    className={styles.skeletonLine}
+                    style={{ width: "80%" }}
+                  />
+                </div>
+              </div>
+            </section>
+
+            <div className={styles.stats}>
+              <div className={styles.statsGrid}>
+                <div className={styles.statBlock}>
+                  <div
+                    className={styles.skeletonLine}
+                    style={{ width: "50%", marginBottom: "8px" }}
+                  />
+                  <div
+                    className={styles.skeletonLine}
+                    style={{
+                      width: "30%",
+                      height: "24px",
+                      marginBottom: "8px",
+                    }}
+                  />
+                  <div
+                    className={styles.skeletonLine}
+                    style={{ width: "90%" }}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </aside>
+
+        <div className={styles.mainColumn}>
+          <div className={styles.grid}>
+            {[...Array(6)].map((_, i) => (
+              <div key={i} className={styles.skeletonCard}>
+                <div
+                  className={styles.skeletonLine}
+                  style={{
+                    height: "200px",
+                    width: "100%",
+                    marginBottom: "16px",
+                  }}
+                />
+                <div
+                  className={styles.skeletonLine}
+                  style={{ width: "80%", marginBottom: "8px" }}
+                />
+                <div className={styles.skeletonLine} style={{ width: "60%" }} />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 function StatsRibbon({
   matchedCount,
@@ -41,7 +187,7 @@ function StatsRibbon({
                 : t("propertyCatalog.rent")}
             {t("propertyCatalog.city")}
             {cityFilter === "all"
-              ? t("propertyCatalog.wholeArea")
+              ? t("propertyCatalog.allAreas")
               : cityFilter === "tokyo"
                 ? t("propertyId.tokyo")
                 : cityFilter === "osaka"
@@ -62,6 +208,7 @@ export function PropertyCatalog() {
   const [listingFilter, setListingFilter] = useState<ListingFilter>("all");
   const [cityFilter, setCityFilter] = useState<CityFilter>("all");
   const [roomsFilter, setRoomsFilter] = useState<RoomsFilter>("all");
+  const [state, setState] = useState<loadingState>("loading");
   const { t } = useTranslation();
 
   const metrics = useMemo(() => {
@@ -101,6 +248,14 @@ export function PropertyCatalog() {
   }, [listingFilter, cityFilter, roomsFilter]);
 
   const matchedCount = metrics.filtered.length;
+
+  useEffect(() => {
+    setState("ready");
+  }, []);
+
+  if (state === "loading") {
+    return <PropertyCatalogSkeleton />;
+  }
 
   return (
     <div className={styles.wrap}>

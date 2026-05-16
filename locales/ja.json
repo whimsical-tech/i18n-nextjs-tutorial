@@ -1,7 +1,7 @@
 {
   "lastVisit": {
     "dateWarning": "※表示される日付はいつも今日の日付です（デモ用のローカル表示）",
-    "mainText": "前回のご訪問は <1>{{date}}</1> でした。その後、新着物件が <3>{{count}} 件</3> 加わっています。一覧では <5>NEW</5> の付いた物件を先頭に並べていま。"
+    "mainText": "前回のご訪問は <strong>{{date}}</strong> でした。その後、新着物件が <strong>{{count}} 件</strong> 加わっています。一覧では <strong>NEW</strong> の付いた物件を先頭に並べていま。"
   },
   "about": {
     "overviewTitle": "会社のあらまし（架空）",
@@ -32,6 +32,7 @@
     "note": "ここに掲載する沿革・代表メッセージ・組織図などはすべてダミーです。実在の企業とは関係ありません。文章量を確保するため、業界でよくある見出し構成を意識して並べています。"
   },
   "slogan": "日本各地の売買・賃貸をワンストップでサポートします",
+  "companyName": "晴レ不動産",
   "siteHeader": {
     "home": "ホーム",
     "about": "会社概要"
@@ -64,7 +65,7 @@
   "propertyCatalog": {
     "noSpecification": "指定なし",
     "LDKsystem": "LDK系統",
-    "wholeArea": "全域",
+    "allAreas": "全域",
     "all": "すべて",
     "prefectures": "都市（都道府県）",
     "city": "／都市：",

@@ -40,7 +40,12 @@ export function PropertyCard({ property }: { property: PropertyRecord }) {
           />
 
           <div className={styles.thumbBadges}>
-            <span className={styles.pill}>{property.listingKind}</span>
+            <span className={styles.pill}>
+              {" "}
+              {property.listingKind === "sale"
+                ? t("propertyId.saleProperties")
+                : t("propertyId.rentalProperties")}
+            </span>
             {property.isNew && (
               <span className={styles.newBadge} aria-label={t("newListings")}>
                 NEW
