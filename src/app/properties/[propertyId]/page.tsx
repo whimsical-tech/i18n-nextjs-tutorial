@@ -133,7 +133,7 @@ export default async function PropertyPage({ params }: PageProps) {
           <figure className={styles.figure}>
             <Image
               src={`/images/${property.id}.webp`}
-              alt={`${titleFor(property)}の外観写真（イメージ）`}
+              alt=""
               width={600}
               height={400}
             />
