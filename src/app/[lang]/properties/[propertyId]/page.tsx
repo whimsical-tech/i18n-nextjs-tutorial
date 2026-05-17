@@ -85,7 +85,7 @@ export async function generateStaticParams() {
   return PROPERTIES.map((p) => ({ propertyId: p.id }));
 }
 
-/* export async function generateMetadata({
+export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
   const { propertyId, lang } = await params;
@@ -95,16 +95,16 @@ export async function generateStaticParams() {
 
   const property = getPropertyById(propertyId);
   if (!property) {
-    return { title: `${t["propertyNotFound"]} | 晴レ不動産` };
+    return { title: `${t["propertyNotFound"]} | ${dictionary.companyName}` };
   }
 
   const dict = dictionary as NonNullable<typeof dictionary>;
 
   return {
-    title: `${getDictValue(dict.propertyTitle, propertyId)} | 晴レ不動産`,
+    title: `${getDictValue(dict.propertyTitle, propertyId)} | ${dictionary.companyName}`,
     description: `${getDictValue(dict, property.cityKey)}${t["areaDescription"]}`,
   };
-} */
+}
 
 export default async function PropertyPage({ params }: PageProps) {
   const { propertyId, lang } = await params;
