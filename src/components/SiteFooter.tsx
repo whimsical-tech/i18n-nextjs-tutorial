@@ -1,6 +1,5 @@
 import styles from "./SiteFooter.module.css";
 import { getTranslation } from "@/locales";
-import { Locale } from "@/i18n-config";
 
 export async function SiteFooter({
   t,

@@ -18,7 +18,7 @@ export default async function Home({
 
   return (
     <div className={styles.page}>
-      <SiteHeader params={params} active="home" />
+      <SiteHeader t={dictionary} lang={lang} active="home" />
       <main className={styles.main}>
         <header className={styles.sectionHead}>
           <div className={styles.sectionHeadTop}>

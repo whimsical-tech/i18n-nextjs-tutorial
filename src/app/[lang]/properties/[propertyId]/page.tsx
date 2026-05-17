@@ -129,7 +129,7 @@ export default async function PropertyPage({ params }: PageProps) {
 
   return (
     <div className={styles.page}>
-      <SiteHeader active="home" params={params} />
+      <SiteHeader active="home" lang={lang} t={dictionary} />
       <main className={styles.main}>
         <p className={styles.breadcrumb}>
           <Link href={`/${lang}`}>{dictionary["breadcrumb"].home}</Link>

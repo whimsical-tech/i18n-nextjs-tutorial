@@ -8,14 +8,13 @@ type NavKey = "home" | "about";
 
 export async function SiteHeader({
   active,
-  params,
+  lang,
+  t,
 }: {
   active: NavKey;
-  params: Promise<{ lang: Locale }>;
+  lang: Locale;
+  t: Awaited<ReturnType<typeof getTranslation>>;
 }) {
-  const { lang } = await params;
-
-  const t = await getTranslation(lang);
   return (
     <header className={styles.header}>
       <div className={styles.inner}>
@@ -23,7 +22,7 @@ export async function SiteHeader({
           <span className={styles.brandName}>{t["companyName"]}</span>
           <span className={styles.tagline}>{t["slogan"]}</span>
         </Link>
-        <nav className={styles.nav} aria-label="主要ナビゲーション">
+        <nav className={styles.nav} aria-label={t["siteHeader"].mainNavigation}>
           <Link
             href={`/${lang}/`}
             className={`${styles.navLink} ${

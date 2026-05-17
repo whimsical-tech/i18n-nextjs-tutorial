@@ -39,7 +39,7 @@ export default async function AboutPage({
   const t = dictionary.about;
   return (
     <div className={styles.page}>
-      <SiteHeader params={params} active="about" />
+      <SiteHeader t={dictionary} lang={lang} active="about" />
       <main className={styles.main}>
         <div>
           <p className={styles.kicker}>About Hare Real Estate</p>
