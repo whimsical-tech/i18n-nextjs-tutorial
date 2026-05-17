@@ -5,11 +5,20 @@ import { Locale } from "@/i18n-config";
 import { getTranslation } from "@/locales";
 import styles from "./about.module.css";
 
-export const metadata: Metadata = {
-  title: "会社概要 | 晴レ不動産",
-  description:
-    "晴レ不動産株式会社のミッション、沿革、数字の目安をご紹介します（プレースホルダ）。",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lang: Locale }>;
+}): Promise<Metadata> {
+  const { lang } = await params;
+  const dictionary = await getTranslation(lang);
+  const t = dictionary.about;
+
+  return {
+    title: t["metadataTitle"],
+    description: t["metadataDescription"],
+  };
+}
 
 function ValueCard({ title, body }: { title: string; body: string }) {
   return (

@@ -25,7 +25,9 @@
     "teamTitle": "チームで引き継ぐ",
     "transparencyText": "重要事項説明は早めの段階で共有し、図面修正や価格変更の履歴も追えるようにします。",
     "transparencyTitle": "透明性を最優先する",
-    "valuesTitle": "バリュー（行動指針の例）"
+    "valuesTitle": "バリュー（行動指針の例）",
+    "metadataTitle": "会社概要 | 晴レ不動産",
+    "metadataDescription": "晴レ不動産株式会社のミッション、沿革、数字の目安をご紹介します（プレースホルダ）。"
   },
   "aside": {
     "distanceInfo": "駅徒歩分数と実走時間の両方をメモ化してご案内します",
