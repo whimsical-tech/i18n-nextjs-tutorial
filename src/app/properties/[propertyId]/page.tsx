@@ -42,30 +42,6 @@ function cityJp(key: PropertyRecord["cityKey"]) {
   return "神奈川県";
 }
 
-function NarrativeBlock({ property }: { property: PropertyRecord }) {
-  const area = property.areaSqm;
-  const rooms = property.rooms;
-  const year = property.builtYear;
-
-  return (
-    <section className={styles.section} aria-labelledby="story-heading">
-      <h2 id="story-heading">物件ストーリー（読み物）</h2>
-      <p>
-        このページは <strong>{titleFor(property)}</strong> のデモ紹介です。
-        専有面積は <strong>{area}㎡</strong>、間取りは{" "}
-        <strong>{rooms}LDK相当</strong>、 築年は <strong>{year}年</strong>{" "}
-        としてサンプル登録しています。
-      </p>
-      <p>
-        朝の採光や風の通り道は図面だけでは伝わりにくいため、内見時にはカーテンの開閉状態も含めて確認することをおすすめします（一般論）。
-      </p>
-      <p>
-        ペット可否、楽器、事務所利用などの管理規約は管理会社の最新版をご確認ください。ここに書かれた内容はプレースホルダです。
-      </p>
-    </section>
-  );
-}
-
 function SpecTable({ property }: { property: PropertyRecord }) {
   const kindLabel = property.listingKind === "sale" ? "売買" : "賃貸";
   const priceCell =
@@ -210,7 +186,6 @@ export default async function PropertyPage({ params }: PageProps) {
           </ul>
         </section>
 
-        <NarrativeBlock property={property} />
         <SpecTable property={property} />
 
         <section className={styles.section} aria-labelledby="location-heading">
