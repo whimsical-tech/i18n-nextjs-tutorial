@@ -17,6 +17,8 @@
     "historyTitle": "History",
     "locationText": "We don't just rely on the sense of distance on the screen; we repeatedly verify the walking route.",
     "locationTitle": "Switching back and forth between the location and the map",
+    "metadataTitle": "Company Profile | Hare Real Estate",
+    "metadataDescription": "Here is an overview of Hare Real Estate Co., Ltd.'s mission, history, and key figures.",
     "mission": "Based on our belief that \"a home is the stage for life,\" we propose living environments tailored to each customer's individual life stage. Our role is to articulate the balance between asset value and comfort, transcending the boundaries of buying and renting.",
     "missionTitle": "Mission",
     "note": "The company history, message from the representative, and organizational chart presented here are all placeholders. They are not related to any actual company. To ensure sufficient text length, the headings are arranged in a manner commonly seen in the industry.",
@@ -25,9 +27,7 @@
     "teamTitle": "Team handover",
     "transparencyText": "We will share important information at an early stage and ensure that we can track the history of drawing revisions and price changes.",
     "transparencyTitle": "Prioritizing transparency",
-    "valuesTitle": "Values ​​(examples of behavioral guidelines)",
-    "metadataTitle": "会社概要 | 晴レ不動産",
-    "metadataDescription": "晴レ不動産株式会社のミッション、沿革、数字の目安をご紹介します（プレースホルダ）。"
+    "valuesTitle": "Values ​​(examples of behavioral guidelines)"
   },
   "aside": {
     "distanceInfo": "I will provide you with notes on both the walking time from the station and the actual running time.",
@@ -129,7 +129,7 @@
     "schoolInfo": "School district information is not included. If necessary, please refer to the publicly available information from the Board of Education and add a note.",
     "specifications": "Key Specifications",
     "storagePlan": "Storage plan: Based on adjustable shelves, with a focus on creating a flow that avoids placing seasonal appliances on the floor.",
-    "surroundings": "Notes on surrounding environment (placeholder)",
+    "surroundings": "Notes on surrounding environment ",
     "tokyo": "Tokyo",
     "type": "Type",
     "year": ""
