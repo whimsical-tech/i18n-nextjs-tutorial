@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import { NEW_LISTING_COUNT } from "@/lib/properties";
 import styles from "./LastVisitNotice.module.css";
-
 import { Trans, useTranslation } from "react-i18next";
 
 type VisitState = "loading" | "visited";
@@ -50,7 +49,6 @@ export function LastVisitNotice() {
             <strong>count</strong>
             <strong>NEW</strong>
           </Trans>
-
           <span className={styles.muted}>{t("lastVisit.dateWarning")}</span>
         </div>
       )}
