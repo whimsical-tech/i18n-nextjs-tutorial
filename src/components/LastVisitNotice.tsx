@@ -31,7 +31,7 @@ export function LastVisitNotice() {
 
   return (
     <aside className={styles.banner} role="status" aria-live="polite">
-      {visit !== "loading" ? (
+      {visit === "loading" ? (
         <div className={styles.skeleton}>
           <div className={styles.skeletonLine} />
           <div className={styles.skeletonLine} />

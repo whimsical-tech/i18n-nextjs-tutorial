@@ -1,6 +1,6 @@
 import Link from "next/link";
 import styles from "./SiteHeader.module.css";
-import LanguageSwitcher from "./LanguageSwitcher/language-switcher";
+import LanguageSwitcher from "./LanguageSwitcher";
 import { getTranslation } from "@/locales";
 import { Locale } from "@/i18n-config";
 
