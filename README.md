@@ -1,6 +1,6 @@
 ## i18n + Next.js tutorial
 
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app). It was made to accompany [`this tutorial and blog post`] (https://whimsical-tech.vercel.app/en/blog/i18n-and-next-js). By following it, you'll learn how to implement internationalization in Next.js 16.
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app). It was made to accompany [`this tutorial and blog post`](https://whimsical-tech.vercel.app/en/blog/i18n-and-next-js). By following it, you'll learn how to implement internationalization in Next.js 16.
 
 ## Getting Started
 
