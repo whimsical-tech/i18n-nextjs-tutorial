@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
+import { Locale } from "@/i18n-config";
 import { notFound } from "next/navigation";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
@@ -9,7 +10,7 @@ import { PROPERTIES, getPropertyById } from "@/lib/properties";
 import styles from "./propertyDetail.module.css";
 
 type PageProps = {
-  params: Promise<{ propertyId: string }>;
+  params: Promise<{ propertyId: string; lang: Locale }>;
 };
 
 function formatYen(n: number) {
@@ -129,7 +130,7 @@ export async function generateMetadata({
 }
 
 export default async function PropertyPage({ params }: PageProps) {
-  const { propertyId } = await params;
+  const { propertyId, lang } = await params;
   const property = getPropertyById(propertyId);
   if (!property) {
     notFound();
@@ -144,10 +145,10 @@ export default async function PropertyPage({ params }: PageProps) {
 
   return (
     <div className={styles.page}>
-      <SiteHeader active="home" />
+      <SiteHeader params={params} active="home" />
       <main className={styles.main}>
         <p className={styles.breadcrumb}>
-          <Link href="/">ホーム</Link>
+          <Link href={`/${lang}`}>ホーム</Link>
           {" ／ "}
           <span>物件詳細</span>
         </p>

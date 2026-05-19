@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Noto_Sans_JP } from "next/font/google";
+import { I18nProvider } from "@/components/I18nProvider";
+import { Locale } from "@/i18n-config";
 import "./globals.css";
 
 const notoSansJp = Noto_Sans_JP({
@@ -9,26 +11,34 @@ const notoSansJp = Noto_Sans_JP({
   display: "swap",
 });
 
+export async function generateStaticParams() {
+  return [{ lang: "en" }, { lang: "ja" }];
+}
+
 export const metadata: Metadata = {
   title: "晴レ不動産 | 首都圏の売買・賃貸物件",
   description:
     "東京都・大阪府・神奈川県を中心に、売買および賃貸の優良物件情報をご案内するデモサイトです。",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
+  params,
 }: Readonly<{
   children: React.ReactNode;
+  params: Promise<{ lang: string }>;
 }>) {
+  const { lang } = await params;
+  const currentLang = lang as Locale;
   return (
-    <html lang="ja" className={notoSansJp.variable}>
+    <html lang={lang} className={notoSansJp.variable}>
       <body
         style={{
           fontFamily:
             "var(--font-noto-sans-jp), 'Hiragino Sans', 'Yu Gothic UI', Meiryo, sans-serif",
         }}
       >
-        {children}
+        <I18nProvider lang={currentLang}>{children}</I18nProvider>
       </body>
     </html>
   );

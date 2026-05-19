@@ -2,23 +2,26 @@
 
 import { useEffect, useState } from "react";
 import { NEW_LISTING_COUNT } from "@/lib/properties";
+import { Trans, useTranslation } from "react-i18next";
 import styles from "./LastVisitNotice.module.css";
-
-function formatVisitDate() {
-  const d = new Date();
-  if (Number.isNaN(d.getTime())) return "不明な日時";
-  return new Intl.DateTimeFormat("ja-JP", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-    weekday: "short",
-  }).format(d);
-}
 
 type VisitState = "loading" | "visited";
 
 export function LastVisitNotice() {
   const [visit, setVisit] = useState<VisitState>("loading");
+  const { t, i18n } = useTranslation();
+  const locale = i18n.language;
+
+  function formatVisitDate(locale: string) {
+    const d = new Date();
+    if (Number.isNaN(d.getTime())) return t("unknownDate");
+    return new Intl.DateTimeFormat(locale, {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      weekday: "short",
+    }).format(d);
+  }
 
   useEffect(() => {
     setVisit("visited");
@@ -34,16 +37,15 @@ export function LastVisitNotice() {
         </div>
       ) : (
         <div className={styles.content}>
-          <p>
-            前回のご訪問は <strong>{formatVisitDate()}</strong>{" "}
-            でした。その後、新着物件が <strong>{NEW_LISTING_COUNT} 件</strong>
-            加わっています。一覧では <strong>NEW</strong>{" "}
-            の付いた物件を先頭に並べています。
-          </p>
+          <Trans
+            i18nKey="lastVisit.mainText"
+            values={{
+              date: formatVisitDate(locale),
+              count: NEW_LISTING_COUNT,
+            }}
+          />
 
-          <span className={styles.muted}>
-            ※日付はこのブラウザに保存した前回アクセス時刻です（デモ用のローカル表示）。
-          </span>
+          <span className={styles.muted}>{t("lastVisit.dateWarning")}</span>
         </div>
       )}
     </aside>

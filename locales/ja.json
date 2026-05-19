@@ -1,0 +1,8 @@
+{
+  "slogan": "日本各地の売買・賃貸をワンストップでサポートします",
+  "lastVisit": {
+    "dateWarning": " ※日付はこのブラウザに保存した前回アクセス時刻です（デモ用の表示）。",
+    "mainText": "前回のご訪問は <strong>{{date}}</strong> でした。その後、新着物件が <strong>{{count}} 件</strong> 加わっています。一覧では <strong>NEW</strong> の付いた物件を先頭に並べていま。"
+  },
+  "unknownDate": "不明な日時"
+}
