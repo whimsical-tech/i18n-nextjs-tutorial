@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Noto_Sans_JP } from "next/font/google";
 import { I18nProvider } from "@/components/I18nProvider";
+import { Locale } from "@/i18n-config";
+import { getTranslation } from "@/locales";
 import "../globals.css";
 
 const notoSansJp = Noto_Sans_JP({
@@ -14,11 +16,20 @@ export async function generateStaticParams() {
   return [{ lang: "en" }, { lang: "ja" }];
 }
 
-export const metadata: Metadata = {
-  title: "晴レ不動産 | 首都圏の売買・賃貸物件",
-  description:
-    "東京都・大阪府・神奈川県を中心に、売買および賃貸の優良物件情報をご案内するデモサイトです。",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lang: Locale }>;
+}): Promise<Metadata> {
+  const { lang } = await params;
+  const dictionary = await getTranslation(lang);
+  const t = dictionary;
+
+  return {
+    title: t["companyName"],
+    description: t["slogan"],
+  };
+}
 
 export default async function RootLayout({
   children,
