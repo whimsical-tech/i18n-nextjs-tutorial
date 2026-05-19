@@ -1,72 +1,160 @@
 "use client";
 
-import { useMemo, useState } from "react";
-import type { CityKey, ListingKind, PropertyRecord } from "@/lib/properties";
+import { useMemo, useEffect, useState } from "react";
+import type { CityKey, ListingKind } from "@/lib/properties";
 import { PROPERTIES, sortPropertiesForDisplay } from "@/lib/properties";
 import { PropertyCard } from "./PropertyCard";
 import styles from "./PropertyCatalog.module.css";
+import { useTranslation } from "react-i18next";
 
 type ListingFilter = "all" | ListingKind;
 type CityFilter = "all" | CityKey;
 type RoomsFilter = "all" | 1 | 2 | 3 | 4;
 
-function cityLabel(key: CityKey) {
-  if (key === "tokyo") return "東京都";
-  if (key === "osaka") return "大阪府";
-  return "神奈川県";
-}
+type loadingState = "loading" | "ready";
 
-function PropertyTitle({ id }: { id: string }) {
-  switch (id) {
-    case "shinjuku-park-1203":
-      return <>新宿御苑スカイレジデンス 12階角部屋</>;
-    case "meguro-river-501":
-      return <>目黒川テラスハウス 501号室</>;
-    case "yokohama-minato-902":
-      return <>横浜みなとみらいタワー 9階</>;
-    case "kawasaki-station-305":
-      return <>川崎駅前グランドレジデンス 305</>;
-    case "umeda-sky-2101":
-      return <>梅田スカイコート 21階南向き</>;
-    case "namba-loft-808":
-      return <>難波ロフトマンション 808号室</>;
-    case "shibuya-cross-402":
-      return <>渋谷クロスゲート 4階メゾネット</>;
-    case "shinagawa-bay-1502":
-      return <>品川ベイサイドタワー 15階</>;
-    case "sakai-garden-101":
-      return <>堺ガーデンヒルズ 1階庭付き</>;
-    case "yokohama-hills-2205":
-      return <>横浜ヒルズレジデンス</>;
-    case "ikebukuro-sunrise-0801":
-      return <>池袋サンライズコート 8階南東向き</>;
-    case "nakanoshima-river-1201":
-      return <>中之島リバーフロント 12階</>;
-    case "fujisawa-coast-0302":
-      return <>藤沢コーストレジデンス 3階</>;
-    case "taito-skytree-0909":
-      return <>台東スカイツリービュー 9階角住戸</>;
-    default:
-      return <>掲載物件（名称準備中）</>;
-  }
-}
+function PropertyCatalogSkeleton() {
+  return (
+    <div className={styles.wrap}>
+      <div className={styles.catalogRow}>
+        <aside className={styles.stickyAside} aria-hidden="true">
+          <div className={styles.filterStack}>
+            <section className={styles.filters}>
+              <div className={styles.filtersTitle}>
+                <div className={styles.skeletonLine} style={{ width: "60%" }} />
+              </div>
 
-function propertyCopy(p: PropertyRecord) {
-  const cityLabelJp = cityLabel(p.cityKey);
-  const roomsLabelJp = `${p.rooms}LDK相当`;
-  const areaLabelJp = `専有面積 ${p.areaSqm}㎡`;
-  const yearLabelJp = `築年 ${p.builtYear}年`;
-  const detailCta = "物件の詳細を見る";
-  const thumbCaption = p.listingKind === "sale" ? "売買" : "賃貸";
+              <div className={styles.group}>
+                <div className={styles.groupLabel}>
+                  <div
+                    className={styles.skeletonLine}
+                    style={{ width: "40%" }}
+                  />
+                </div>
+                <div className={styles.row} role="group">
+                  {[1, 2, 3].map((i) => (
+                    <div
+                      key={i}
+                      className={`${styles.chip} ${styles.skeletonChip}`}
+                    >
+                      <div
+                        className={styles.skeletonLine}
+                        style={{ width: "70%" }}
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
 
-  return {
-    cityLabel: `所在地：${cityLabelJp}`,
-    roomsLabel: `間取り：${roomsLabelJp}`,
-    areaLabel: areaLabelJp,
-    yearLabel: yearLabelJp,
-    detailCta,
-    thumbCaption,
-  };
+              <div className={styles.group}>
+                <div className={styles.groupLabel}>
+                  <div
+                    className={styles.skeletonLine}
+                    style={{ width: "35%" }}
+                  />
+                </div>
+                <div className={styles.row} role="group">
+                  {[1, 2, 3, 4].map((i) => (
+                    <div
+                      key={i}
+                      className={`${styles.chip} ${styles.skeletonChip}`}
+                    >
+                      <div
+                        className={styles.skeletonLine}
+                        style={{ width: "60%" }}
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className={styles.group}>
+                <div className={styles.groupLabel}>
+                  <div
+                    className={styles.skeletonLine}
+                    style={{ width: "45%" }}
+                  />
+                </div>
+                <div className={styles.row} role="group">
+                  {[1, 2, 3, 4, 5].map((i) => (
+                    <div
+                      key={i}
+                      className={`${styles.chip} ${styles.skeletonChip}`}
+                    >
+                      <div
+                        className={styles.skeletonLine}
+                        style={{ width: "50%" }}
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className={styles.resetRow}>
+                <div className={`${styles.reset} ${styles.skeletonBtn}`}>
+                  <div
+                    className={styles.skeletonLine}
+                    style={{ width: "60%" }}
+                  />
+                </div>
+                <div className={styles.resetNote}>
+                  <div
+                    className={styles.skeletonLine}
+                    style={{ width: "80%" }}
+                  />
+                </div>
+              </div>
+            </section>
+
+            <div className={styles.stats}>
+              <div className={styles.statsGrid}>
+                <div className={styles.statBlock}>
+                  <div
+                    className={styles.skeletonLine}
+                    style={{ width: "50%", marginBottom: "8px" }}
+                  />
+                  <div
+                    className={styles.skeletonLine}
+                    style={{
+                      width: "30%",
+                      height: "24px",
+                      marginBottom: "8px",
+                    }}
+                  />
+                  <div
+                    className={styles.skeletonLine}
+                    style={{ width: "90%" }}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </aside>
+
+        <div className={styles.mainColumn}>
+          <div className={styles.grid}>
+            {[...Array(6)].map((_, i) => (
+              <div key={i} className={styles.skeletonCard}>
+                <div
+                  className={styles.skeletonLine}
+                  style={{
+                    height: "200px",
+                    width: "100%",
+                    marginBottom: "16px",
+                  }}
+                />
+                <div
+                  className={styles.skeletonLine}
+                  style={{ width: "80%", marginBottom: "8px" }}
+                />
+                <div className={styles.skeletonLine} style={{ width: "60%" }} />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 function StatsRibbon({
@@ -80,30 +168,35 @@ function StatsRibbon({
   cityFilter: CityFilter;
   roomsFilter: RoomsFilter;
 }) {
+  const { t } = useTranslation();
   return (
-    <section className={styles.stats} aria-label="掲載状況のサマリー">
-      <p className={styles.statsTitle}>ライブラリ内の集計（デモ）</p>
+    <section className={styles.stats} aria-label={t("propertyCatalog.summary")}>
       <div className={styles.statsGrid}>
         <div className={styles.statBlock}>
-          <span className={styles.statLabel}>現在の絞り込み結果</span>
+          <span className={styles.statLabel}>
+            {t("propertyCatalog.currentlyFiltered")}
+          </span>
           <span className={styles.statValue}>{matchedCount}</span>
           <span className={styles.statHint}>
-            取引区分：
+            {t("propertyCatalog.type")}
+            {": "}
             {listingFilter === "all"
-              ? "すべて表示"
+              ? t("propertyCatalog.showEverything")
               : listingFilter === "sale"
-                ? "売買のみ"
-                : "賃貸のみ"}
-            ／都市：
+                ? t("propertyCatalog.buyAndSell")
+                : t("propertyCatalog.rent")}
+            {t("propertyCatalog.city")}
             {cityFilter === "all"
-              ? "全域"
+              ? t("propertyCatalog.allAreas")
               : cityFilter === "tokyo"
-                ? "東京都"
+                ? t("propertyId.tokyo")
                 : cityFilter === "osaka"
-                  ? "大阪府"
-                  : "神奈川県"}
-            ／部屋数：
-            {roomsFilter === "all" ? "指定なし" : `${roomsFilter}LDK系統`}
+                  ? t("propertyId.osaka")
+                  : t("propertyId.kanagawa")}
+            {t("propertyCatalog.floorPlan")}
+            {roomsFilter === "all"
+              ? t("propertyCatalog.noSpecification")
+              : `${roomsFilter}${t("propertyCatalog.LDKsystem")}`}
           </span>
         </div>
       </div>
@@ -115,6 +208,8 @@ export function PropertyCatalog() {
   const [listingFilter, setListingFilter] = useState<ListingFilter>("all");
   const [cityFilter, setCityFilter] = useState<CityFilter>("all");
   const [roomsFilter, setRoomsFilter] = useState<RoomsFilter>("all");
+  const [state, setState] = useState<loadingState>("loading");
+  const { t } = useTranslation();
 
   const metrics = useMemo(() => {
     const totalListed = PROPERTIES.length;
@@ -154,16 +249,32 @@ export function PropertyCatalog() {
 
   const matchedCount = metrics.filtered.length;
 
+  useEffect(() => {
+    setState("ready");
+  }, []);
+
+  if (state === "loading") {
+    return <PropertyCatalogSkeleton />;
+  }
+
   return (
     <div className={styles.wrap}>
       <div className={styles.catalogRow}>
         <aside className={styles.stickyAside} aria-label="検索条件・集計">
           <div className={styles.filterStack}>
             <section className={styles.filters} aria-label="物件検索フィルター">
-              <h2 className={styles.filtersTitle}>条件で絞り込む</h2>
+              <h2 className={styles.filtersTitle}>
+                {t("propertyCatalog.filterByConditions")}
+              </h2>
               <div className={styles.group}>
-                <p className={styles.groupLabel}>取引の種類</p>
-                <div className={styles.row} role="group" aria-label="取引区分">
+                <p className={styles.groupLabel}>
+                  {t("propertyCatalog.transactionType")}
+                </p>
+                <div
+                  className={styles.row}
+                  role="group"
+                  aria-label={t("propertyCatalog.type")}
+                >
                   <button
                     type="button"
                     className={`${styles.chip} ${
@@ -171,7 +282,7 @@ export function PropertyCatalog() {
                     }`}
                     onClick={() => setListingFilter("all")}
                   >
-                    すべて
+                    {t("propertyCatalog.all")}
                   </button>
                   <button
                     type="button"
@@ -180,7 +291,7 @@ export function PropertyCatalog() {
                     }`}
                     onClick={() => setListingFilter("sale")}
                   >
-                    売買のみ
+                    {t("propertyCatalog.buyAndSell")}
                   </button>
                   <button
                     type="button"
@@ -189,17 +300,19 @@ export function PropertyCatalog() {
                     }`}
                     onClick={() => setListingFilter("rent")}
                   >
-                    賃貸のみ
+                    {t("propertyCatalog.rent")}
                   </button>
                 </div>
               </div>
 
               <div className={styles.group}>
-                <p className={styles.groupLabel}>都市（都道府県）</p>
+                <p className={styles.groupLabel}>
+                  {t("propertyCatalog.prefectures")}
+                </p>
                 <div
                   className={styles.row}
                   role="group"
-                  aria-label="都市フィルター"
+                  aria-label={t("propertyCatalog.cityFilter")}
                 >
                   <button
                     type="button"
@@ -208,7 +321,7 @@ export function PropertyCatalog() {
                     }`}
                     onClick={() => setCityFilter("all")}
                   >
-                    指定なし
+                    {t("propertyCatalog.noSpecification")}
                   </button>
                   <button
                     type="button"
@@ -217,7 +330,7 @@ export function PropertyCatalog() {
                     }`}
                     onClick={() => setCityFilter("tokyo")}
                   >
-                    東京都
+                    {t("propertyId.tokyo")}
                   </button>
                   <button
                     type="button"
@@ -226,7 +339,7 @@ export function PropertyCatalog() {
                     }`}
                     onClick={() => setCityFilter("osaka")}
                   >
-                    大阪府
+                    {t("propertyId.osaka")}
                   </button>
                   <button
                     type="button"
@@ -235,17 +348,19 @@ export function PropertyCatalog() {
                     }`}
                     onClick={() => setCityFilter("kanagawa")}
                   >
-                    神奈川県
+                    {t("propertyId.kanagawa")}
                   </button>
                 </div>
               </div>
 
               <div className={styles.group}>
-                <p className={styles.groupLabel}>部屋数の目安（LDK）</p>
+                <p className={styles.groupLabel}>
+                  {t("propertyCatalog.numberOfRooms")}
+                </p>
                 <div
                   className={styles.row}
                   role="group"
-                  aria-label="間取りフィルター"
+                  aria-label={t("propertyCatalog.floorPlanFilter")}
                 >
                   <button
                     type="button"
@@ -254,7 +369,7 @@ export function PropertyCatalog() {
                     }`}
                     onClick={() => setRoomsFilter("all")}
                   >
-                    こだわらない
+                    {t("any")}
                   </button>
                   <button
                     type="button"
@@ -306,10 +421,10 @@ export function PropertyCatalog() {
                       setRoomsFilter("all");
                     }}
                   >
-                    条件をすべてクリア
+                    {t("propertyCatalog.reset")}
                   </button>
                   <span className={styles.resetNote}>
-                    クリア後は掲載ライブラリの全件が再表示されます
+                    {t("propertyCatalog.resetNotice")}
                   </span>
                 </div>
               )}
@@ -328,21 +443,14 @@ export function PropertyCatalog() {
           {matchedCount === 0 ? (
             <div className={styles.empty}>
               <p className={styles.emptyTitle}>
-                該当する物件が見つかりませんでした
+                {t("propertyCatalog.noResults")}
               </p>
-              <p>
-                条件を緩めるか、「条件をすべてクリア」からやり直してください。
-              </p>
+              <p>{t("propertyCatalog.changeCriteria")}</p>
             </div>
           ) : (
             <div className={styles.grid}>
               {metrics.filtered.map((p) => (
-                <PropertyCard
-                  key={p.id}
-                  property={p}
-                  title={<PropertyTitle id={p.id} />}
-                  copy={propertyCopy(p)}
-                />
+                <PropertyCard key={p.id} property={p} />
               ))}
             </div>
           )}

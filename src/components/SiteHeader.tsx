@@ -1,35 +1,45 @@
 import Link from "next/link";
 import styles from "./SiteHeader.module.css";
+import LanguageSwitcher from "./LanguageSwitcher";
+import { getTranslation } from "@/locales";
+import { Locale } from "@/i18n-config";
 
 type NavKey = "home" | "about";
 
-export function SiteHeader({ active }: { active: NavKey }) {
+export async function SiteHeader({
+  active,
+  lang,
+  t,
+}: {
+  active: NavKey;
+  lang: Locale;
+  t: Awaited<ReturnType<typeof getTranslation>>;
+}) {
   return (
     <header className={styles.header}>
       <div className={styles.inner}>
-        <Link href="/" className={styles.brand}>
-          <span className={styles.brandName}>晴レ不動産</span>
-          <span className={styles.tagline}>
-            日本各地の売買・賃貸をワンストップでサポートします
-          </span>
+        <Link href={`/${lang}/`} className={styles.brand}>
+          <span className={styles.brandName}>{t["companyName"]}</span>
+          <span className={styles.tagline}>{t["slogan"]}</span>
         </Link>
-        <nav className={styles.nav} aria-label="主要ナビゲーション">
+        <nav className={styles.nav} aria-label={t["siteHeader"].mainNavigation}>
           <Link
-            href="/"
+            href={`/${lang}/`}
             className={`${styles.navLink} ${
               active === "home" ? styles.navLinkActive : ""
             }`}
           >
-            ホーム
+            {t["siteHeader"].home}
           </Link>
           <Link
-            href="/about"
+            href={`/${lang}/about`}
             className={`${styles.navLink} ${
               active === "about" ? styles.navLinkActive : ""
             }`}
           >
-            会社概要
+            {t["siteHeader"].about}
           </Link>
+          <LanguageSwitcher />
         </nav>
       </div>
     </header>
