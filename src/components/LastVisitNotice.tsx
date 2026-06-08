@@ -13,7 +13,7 @@ export function LastVisitNotice() {
   const { t, i18n } = useTranslation();
   const locale = i18n.language;
 
-  function formatVisitDate(locale: string) {
+  function formatVisitDate() {
     const d = new Date();
     if (Number.isNaN(d.getTime())) return t("unknownDate");
     return new Intl.DateTimeFormat(locale, {
@@ -41,7 +41,7 @@ export function LastVisitNotice() {
           <Trans
             i18nKey="lastVisit.mainText"
             values={{
-              date: formatVisitDate(locale),
+              date: formatVisitDate(),
               count: NEW_LISTING_COUNT,
             }}
           >
