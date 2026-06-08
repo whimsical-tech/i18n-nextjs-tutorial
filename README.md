@@ -1,4 +1,8 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+日本語版は下記をご覧ください。
+
+## i18n + Next.js tutorial
+
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app). It was made to accompany [`this tutorial and blog post`](https://whimsical-tech.vercel.app/en/blog/i18n-and-next-js). By following it, you'll learn how to implement internationalization in Next.js 16.
 
 ## Getting Started
 
@@ -16,21 +20,42 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Branches Guide
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Branch    | Purpose                                                                      |
+| :-------- | :--------------------------------------------------------------------------- |
+| `initial` | Starting point for the tutorial, no translations.                            |
+| `test`    | Final state; by following the tutorial your files should match this exactly. |
+| `master`  | Extended version with 100% translated content.                               |
 
-## Learn More
+_Note: Any other branches are either backups or irrelevant._
 
-To learn more about Next.js, take a look at the following resources:
+## i18n + Next.js チュートリアル
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+これは create-next-app を使用してセットアップされた Next.js プロジェクトです。本チュートリアルとブログ記事 に合わせて作成されました。これに従うことで、Next.js 16 での国際化（i18n）の実装方法を学ぶことができます。
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## スタートガイド
 
-## Deploy on Vercel
+まず、開発サーバーを実行します：
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+npm run dev
+# または
+yarn dev
+# または
+pnpm dev
+# または
+bun dev
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+ブラウザで [http://localhost:3000](http://localhost:3000) を開いて結果を確認してください。
+
+## ブランチについて
+
+| ブランチ  | 目的                                                                                       |
+| :-------- | :----------------------------------------------------------------------------------------- |
+| `initial` | チュートリアルの出発点。翻訳はありません。                                                 |
+| `test`    | 最終状態。チュートリアルに従えば、あなたのファイルはこのブランチと完全に一致するはずです。 |
+| `master`  | 100% 翻訳されたコンテンツを持つ拡張版。                                                    |
+
+**注：他のすべてのブランチはバックアップまたは無関係です。**
