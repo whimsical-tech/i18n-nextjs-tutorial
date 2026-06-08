@@ -4,6 +4,25 @@ import { useRouter, usePathname } from "next/navigation";
 import { useTransition } from "react";
 import { Locale } from "@/i18n-config";
 import { useTranslation } from "react-i18next";
+import i18next from "i18next";
+import { initReactI18next } from "react-i18next";
+import en from "../../locales/en.json";
+import ja from "../../locales/ja.json";
+
+if (!i18next.isInitialized) {
+  i18next.use(initReactI18next).init({
+    resources: {
+      en: { locale: en },
+      ja: { locale: ja },
+    },
+    fallbackLng: "ja",
+    ns: ["locale"],
+    defaultNS: "locale",
+    interpolation: {
+      escapeValue: false,
+    },
+  });
+}
 
 const locales: Record<Locale, { name: string; flag: string }> = {
   en: { name: "English", flag: "🇬🇧" },
